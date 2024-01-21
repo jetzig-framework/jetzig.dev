@@ -1,0 +1,64 @@
+<div class="text-center"><img src="/assets/logo.large.png" /></div>
+<div>
+  <div class="text-center mt-3 fs-5">
+    <p><i>Jetzig</i> is an <a href="https://github.com/jetzig-framework/jetzig/blob/main/LICENSE">MIT</a>-licensed web framework written in <a href="https://ziglang.org/">Zig</a>.</p>
+
+    <p class="font-monospace fw-bold">This software is currently in <i>alpha</i> state.</p>
+  </div>
+  <div class="row ms-5 me-5">
+    <div class="col">
+      File-based routing:
+    <pre><code class="language-zig">// src/app/views/users.zig
+
+const std = @import("std");
+const jetzig = @import("jetzig");
+
+const Request = jetzig.http.Request;
+const Data = jetzig.data.Data;
+const View = jetzig.views.View;
+
+pub fn get(id: []const u8, request: *Request, data: *Data) anyerror!View {
+  var user = try data.object();
+
+  try user.put("email", data.string("user@example.com"));
+  try user.put("name", data.string("Ziggy Ziguana"));
+  try user.put("id", data.integer(id));
+  try user.put("authenticated", data.boolean(true));
+
+  return request.render(.ok);
+}</code></pre>
+    </div>
+
+    <div class="col">
+      Templating with <a href="https://github.com/jetzig-framework/zmpl">Zmpl</a>:
+    <pre><code class="language-zig">// src/app/views/users/get.zmpl
+
+&lt;div&gt;
+  if (std.crypto.random.int(u1) == 1) {
+    &lt;span&gt;User won the coin toss!&lt;/span&gt;
+  }
+  &lt;span&gt;ID: {.id}&lt;/span&gt;
+  &lt;span&gt;Name: {.name}&lt;/span&gt;
+  &lt;span&gt;Email: {.email}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+    <pre><code class="language-html">&lt;!-- curl http://localhost:8080/users/1000.html --&gt;
+
+&lt;div&gt;
+  &lt;span&gt;User won the coin toss!&lt;/span&gt;
+  &lt;span&gt;ID: 1000&lt;/span&gt;
+  &lt;span&gt;Name: Ziggy Ziguana&lt;/span&gt;
+  &lt;span&gt;Email: user@example.com&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+    <pre><code class="language-json">// curl http://localhost:8080/users/1000.json
+
+{
+  "email" : "user@example.com",
+  "id" : "1000",
+  "name" : "Ziggy Ziguana"
+}</code></pre>
+
+    </div>
+  </div>

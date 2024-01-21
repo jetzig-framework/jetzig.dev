@@ -1,0 +1,73 @@
+<h2>Getting Started</h2>
+
+<p><i>Jetzig</i> currently requires <span class="code">Zig 0.11</span>. Support for the upcoming release of <span class="code">Zig 0.12</span> will be on its way soon.</p>
+
+<p>The quickest way to get up and running with <i>Jetzig</i> is with the easy setup script.</p>
+
+<pre><code class="language-bash">bash &lt;(curl https://raw.githubusercontent.com/jetzig-framework/jetzig/main/init.bash)
+</code></pre>
+
+This script creates the following files after prompting you for a project path and a project name:
+
+<pre><code class="language-bash">.gitignore
+src/main.zig
+src/app/config/quotes.json
+src/app/views/index.zig
+src/app/views/index.zmpl
+src/app/views/quotes.zmpl
+src/app/views/quotes/get.zmpl
+</code></pre>
+
+<p>When the setup script is completed, follow the instructions to change to the new directory and run your project.<p>
+
+<p>Note that this script uses the latest development version of <i>Jetzig</i> so you will need to edit <span class="code">build.zig.zon</span> to add a <span class="code">.hash</span> value to the <span class="code">jetzig</span> dependency configuration the first time you run the application. <i>Zig</i> will provide this value for you.</p>
+
+<h2>Routing</h2>
+
+<p>Requests are routed using paths defined in the project's file system.</p>
+
+<p>Each <span class="code">.zig</span> file in <span class="code">src/app/views/</span> defines a set of request view functions that will be invoked when a matching request is received by the server.</p>
+
+<p>Aside from the special case <span class="code">index</span> which maps to <span class="code">/</span>, all view functions map to their respective <i>HTTP</i> verb name, i.e.:</p>
+
+<p><span class="code">GET /foo/1</span> maps to a function named <span class="code">get</span> in the file <span class="code">src/app/views/foo.zig</span>.</p>
+<p><span class="code">GET /foo/</span> maps to a function named <span class="code">index</span> in the file <span class="code">src/app/views/foo.zig</span>.</p>
+<p><span class="code">PUT /bar/1</span> maps to a function named <span class="code">put</span> in the file <span class="code">src/app/views/bar.zig</span>.</p>
+<p><span class="code">DELETE /baz/1000</span> maps to a function named <span class="code">delete</span> in the file <span class="code">src/app/views/baz.zig</span>.</p>
+<p>etc.</p>
+
+<h2>Views</h2>
+
+<p>A view is a function that receives two or three arguments (<span class="code">request</span> and <span class="code">data</span>) and returns by calling <span class="code">request.render()</span>.</p>
+
+<p>Aside from two exceptions (<span class="code">index</span> and <span class="code">post</span>) all view functions receive an <span class="code">id</span> argument which is the URL slug. e.g. if <span class="code">src/app/views/foo.zig</span> defines <span class="code">get</span>, requesting <span class="code">/foo/1000</span> will call <span class="code">foo.bar.baz&nbsp;-&gt;&nbsp;get</span> passing <span class="code">1000</span> as the <span class="code">id</span> argument.</p>
+
+<p>The <span class="code">data</span> argument provides an interface for creating response data.</p>
+
+<p>By default, all response data is available by calling an endpoint with a <span class="code">.json</span> extension or by passing <span class="code">Accept: application/json</span>.</p>
+
+<p>To initialize response data, call either <span class="code">data.object()</span> or <span class="code">data.array()</span>. The returned value is the root document object.
+
+<pre><code class="language-zig">pub fn index(request: *jetzig.http.Request, data: *jetzig.data.Data) anyerror!jetzig.views.View {
+  var object = try data.object();
+  // or ...
+  var array = try data.array();
+
+  try object.put("foo", data.integer(10));
+  // or ...
+  try array.append(data.integer(10));
+
+  return request.render(.ok);
+}</code></pre>
+
+<p>Once a view has been defined, restart your server and make a <i>JSON</i> request to see the output.</p>
+
+<p>If a view returns an error, the server will render <span class="code">500 Internal Server Error</span>.
+
+<h3>Templating</h3>
+
+<p>Templating in <i>Jetzig</i> is provided by <a href="https://github.com/jetzig-framework/zmpl.git">Zmpl</a>.</p>
+
+<p>There are plenty of usage examples in the <a href="https://github.com/jetzig-framework/zmpl/blob/main/src/tests.zig">tests</a>.</p>
+
+<p>To output <i>HTML</i> as well as <i>JSON</i> simply create a <span class="code">.zmpl</span> file in the appropriate location. e.g. if your view <span class="code">src/app/views/foo.zig</span> implements <span class="code">get</span> then you will need to create <span class="code">src/app/views/foo/get.zmpl</span>.</p>
