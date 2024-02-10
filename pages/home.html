@@ -4,6 +4,7 @@
     <p><i>Jetzig</i> is an <a href="https://github.com/jetzig-framework/jetzig/blob/main/LICENSE">MIT</a>-licensed web framework written in <a href="https://ziglang.org/">Zig</a>.</p>
 
     <p class="font-monospace fw-bold">This software is currently in <i>alpha</i> state.</p>
+    <p>Join us on Discord! <a href="https://discord.gg/eufqssz7X6">https://discord.gg/eufqssz7X6</a></p>
   </div>
   <div class="row ms-5 me-5">
     <div class="col">
@@ -55,9 +56,10 @@ pub fn get(id: []const u8, request: *Request, data: *Data) anyerror!View {
     <pre><code class="language-json">// curl http://localhost:8080/users/1000.json
 
 {
-  "email" : "user@example.com",
-  "id" : "1000",
-  "name" : "Ziggy Ziguana"
+   "authenticated" : true,
+   "email" : "user@example.com",
+   "id" : "1000",
+   "name" : "Ziggy Ziguana"
 }</code></pre>
 
     </div>
