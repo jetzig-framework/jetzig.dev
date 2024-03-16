@@ -1,0 +1,26 @@
+.menu {
+  font-size: 1.2rem;
+}
+
+.menu .separator {
+  color: #999;
+}
+
+a {
+  color: #39b54a;
+  text-decoration: none;
+}
+
+code {
+  font-size: 0.9rem !important;
+  background-color: #333;
+  border-radius: 1rem !important;
+  width: 100%;
+  display: inline-block;
+}
+
+.code {
+  color: #39b54a;
+  font-family: monospace;
+  font-weight: bold;
+}
