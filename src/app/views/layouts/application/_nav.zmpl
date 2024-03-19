@@ -26,7 +26,9 @@ const links = .{
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <img src="/jetzig.png" alt="Jetzig Logo" class="h-8">
+    <a href="/">
+      <img src="/jetzig.png" alt="Jetzig Logo" class="h-8">
+    </a>
 
     <a href="https://github.com/jetzig-framework/jetzig" target="_blank" title="GitHub"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/jetzig-framework/jetzig"></a>
 
