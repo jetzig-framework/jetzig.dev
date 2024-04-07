@@ -1,7 +1,7 @@
 const std = @import("std");
 
 pub const jetzig = @import("jetzig");
-pub const routes = @import("routes").routes;
+pub const routes = @import("routes");
 
 pub const jetzig_options = struct {
     pub const middleware: []const type = &.{
@@ -66,5 +66,5 @@ pub fn main() !void {
     const app = try jetzig.init(allocator);
     defer app.deinit();
 
-    try app.start(comptime jetzig.route(routes));
+    try app.start(routes, .{});
 }
