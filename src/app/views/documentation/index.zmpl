@@ -7,6 +7,5 @@
 
 <script>
   window.addEventListener("htmx:load", (ev) => {
-    Prism.highlightAll();
-  \});
+    Prism.highlightAll(); });
 </script>

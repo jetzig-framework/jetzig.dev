@@ -14,23 +14,27 @@ pub const jetzig_options = struct {
             "</div>",
         };
         pub const h1 = .{
-            "<h1 class='text-2xl mb-3 font-bold'>",
+            "<h1 class='text-2xl mt-4 mb-3 font-bold'>",
             "</h1>",
         };
         pub const h2 = .{
-            "<h2 class='text-xl mb-3 font-bold'>",
+            "<h2 class='text-xl mt-5 mb-3 font-bold'>",
             "</h2>",
         };
         pub const h3 = .{
-            "<h3 class='text-lg mb-3 font-bold'>",
+            "<h3 class='text-lg mt-5 mb-3 font-bold'>",
             "</h3>",
+        };
+        pub const h4 = .{
+            "<h4 class='text-base mt-5 mb-3 font-bold'>",
+            "</h4>",
         };
         pub const paragraph = .{
             "<p class='p-3'>",
             "</p>",
         };
         pub const code = .{
-            "<span class='whitespace-nowrap font-mono bg-gray-900 p-2 text-white'>",
+            "<span class='whitespace-nowrap font-mono bg-gray-200 p-2 text-black'>",
             "</span>",
         };
 

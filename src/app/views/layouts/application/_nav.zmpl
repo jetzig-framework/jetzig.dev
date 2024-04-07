@@ -116,13 +116,9 @@
     const navbar = document.querySelector("#navbar-default");
 
     document.querySelector("#burger-menu").addEventListener("click", () => {
-      navbar.classList.toggle("hidden");
-    \});
+      navbar.classList.toggle("hidden"); });
 
     document.querySelectorAll("#navbar-default a").forEach(element => {
       element.addEventListener("click", () => {
-        navbar.classList.add("hidden")
-      \});
-    \});
-  \});
+        navbar.classList.add("hidden") }); }); });
 </script>
