@@ -12,7 +12,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
     });
 
-    try jetzig.jetzigInit(b, exe, .{});
+    try jetzig.jetzigInit(b, exe, .{ .zmpl_version = .v2 });
 
     b.installArtifact(exe);
 

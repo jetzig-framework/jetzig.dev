@@ -9,7 +9,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
     try root.put("downloads", downloads);
 
-    const json = try std.fs.cwd().readFileAlloc(request.allocator, "jetzig_downloads.json", 1024);
+    const json = try std.fs.cwd().readFileAlloc(request.allocator, "/var/www/jetzig_downloads.json", 1024);
     const downloads_data = try std.json.parseFromSlice([]Download, request.allocator, json, .{});
 
     for (downloads_data.value) |download_datum| {

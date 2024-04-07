@@ -1,28 +1,30 @@
-const button_classes =
-  \\block
-  \\py-2
-  \\px-3
-  \\text-gray-900
-  \\rounded
-  \\hover:bg-gray-100
-  \\md:hover:bg-transparent
-  \\md:border-0
-  \\md:hover:text-blue-700
-  \\md:p-0
-  \\dark:text-white
-  \\md:dark:hover:text-blue-500
-  \\dark:hover:bg-gray-700
-  \\dark:hover:text-white
-  \\md:dark:hover:bg-transparent
-  ;
+@zig {
+  const button_classes =
+    \\block
+    \\py-2
+    \\px-3
+    \\text-gray-900
+    \\rounded
+    \\hover:bg-gray-100
+    \\md:hover:bg-transparent
+    \\md:border-0
+    \\md:hover:text-blue-700
+    \\md:p-0
+    \\dark:text-white
+    \\md:dark:hover:text-blue-500
+    \\dark:hover:bg-gray-700
+    \\dark:hover:text-white
+    \\md:dark:hover:bg-transparent
+    ;
 
-const links = .{
-  .{ .href = "/", .title = "Home" },
-  .{ .href = "/about.html", .title = "About" },
-  .{ .href = "/documentation.html", .title = "Documentation" },
-  .{ .href = "/downloads.html", .title = "Downloads" },
-  .{ .href = "/contact.html", .title = "Contact" },
-};
+  const links = .{
+    .{ .href = "/", .title = "Home" },
+    .{ .href = "/about.html", .title = "About" },
+    .{ .href = "/documentation.html", .title = "Documentation" },
+    .{ .href = "/downloads.html", .title = "Downloads" },
+    .{ .href = "/contact.html", .title = "Contact" },
+  };
+}
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -79,21 +81,23 @@ const links = .{
                dark:bg-gray-800
                md:dark:bg-gray-900
                dark:border-gray-700">
-        inline for (links) |link| {
-        <li>
-          <a href="#"
-             hx-get="{(link.href)}"
-             hx-target="#content"
-             hx-push-url="true"
-             hx-swap="innerHTML"
-             class="{:button_classes}" aria-current="page">{(link.title)}</a>
-        </li>
+        @zig {
+          inline for (links) |link| {
+            <li>
+              <a href="#"
+                 hx-get="{{link.href}}"
+                 hx-target="#content"
+                 hx-push-url="true"
+                 hx-swap="innerHTML"
+                 class="{{button_classes}}" aria-current="page">{{link.title}}</a>
+            </li>
+          }
         }
         <li>
           <a
              href="https://github.com/jetzig-framework/jetzig"
              target="_blank"
-             class="{:button_classes}">Source Code</a>
+             class="{{button_classes}}">Source Code</a>
         </li>
         <li>
           <a
@@ -107,21 +111,18 @@ const links = .{
   </div>
 </nav>
 
-<#>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.querySelector("#navbar-default");
 
     document.querySelector("#burger-menu").addEventListener("click", () => {
       navbar.classList.toggle("hidden");
-    });
+    \});
 
     document.querySelectorAll("#navbar-default a").forEach(element => {
       element.addEventListener("click", () => {
         navbar.classList.add("hidden")
-      });
-    });
-  });
+      \});
+    \});
+  \});
 </script>
-</#>
-

@@ -15,11 +15,13 @@
   </head>
 
   <body class="bg-gray-100">
-    <header class="header">{^layouts/application/nav}</header>
+    <header class="header">
+      @partial layouts/application/nav
+    </header>
 
     <main class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
       <div id="content">
-        <>{zmpl.content}</>
+        {{zmpl.content}}
       </div>
     </main>
 
