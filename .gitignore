@@ -5,3 +5,4 @@ static/
 .jetzig
 jetzig_downloads.json
 .bundle
+bundle.tar.gz

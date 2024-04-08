@@ -14,6 +14,9 @@
       <li>
         @partial documentation_link("References", "zmpl/references")
       </li>
+      <li>
+        @partial documentation_link("Partials", "zmpl/partials")
+      </li>
     </ul>
   </ul>
 </div>

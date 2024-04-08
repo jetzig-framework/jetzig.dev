@@ -5,7 +5,7 @@
   <p class="text-gray-500 mt-2">The command line tooling provides commands to initialize a new project and generate components such as views, middleware, and templates.</p>
 
   <p class="text-gray-500 mt-2">This page is updated daily with the latest builds from the
-  @partial snippet("main")
+  @partial code("main")
   branch.</p>
 
   <div>
@@ -32,15 +32,15 @@
   <ul class="list-disc text-gray-500 ms-6 leading-8">
     <li>Download the appropriate zip file for your operating system and unzip.</li>
     <li>(Linux/OSX): Set executable permissions on the unzipped program:
-      @partial snippet("chmod +x jetzig")
+      @partial code("chmod +x jetzig")
     </li>
     <li>Optionally copy the executable into a directory in your
-      @partial snippet("PATH")
+      @partial code("PATH")
       , e.g.
-      @partial snippet("/usr/local/bin")
+      @partial code("/usr/local/bin")
     </li>
     <li>Run
-      @partial snippet("jetzig --help")
+      @partial code("jetzig --help")
       to see detailed usage instructions.</li>
   </ul>
 
@@ -50,15 +50,15 @@
 
   <ul class="list-disc text-gray-500 ms-6 leading-8">
     <li>Clone the repository:
-      @partial snippet("git clone https://github.com/jetzig-framework/jetzig")
+      @partial code("git clone https://github.com/jetzig-framework/jetzig")
     </li>
     <li>Change to the CLI sub-project directory:
-      @partial snippet("cd jetzig/cli")
+      @partial code("cd jetzig/cli")
     </li>
     <li>Compile:
-      @partial snippet("zig build install")
+      @partial code("zig build install")
     </li>
     <li>Run the compiled executable:
-      @partial snippet("zig-out/bin/jetzig --help")</li>
+      @partial code("zig-out/bin/jetzig --help")</li>
   </ul>
 </div>

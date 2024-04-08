@@ -92,7 +92,7 @@
         <li>General purpose cache</li>
         <li>Custom (non-RESTful) routing</li>
         <li>HTTP
-          @partial snippet("keep-alive")
+          @partial code("keep-alive")
         </li>
         <li>Websockets</li>
         <li>Email delivery</li>
