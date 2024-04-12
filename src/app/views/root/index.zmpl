@@ -21,7 +21,9 @@
   <h4 class="flex-initial text-xl font-bold text-[{{jetzig_orange}}]"><i class="fa-solid fa-arrows-turn-to-dots fa-fw me-2"></i> Routing</h4>
   <div>
     <p>Simple, file-based routing to
-      @partial link("RESTful", "https://en.wikipedia.org/wiki/REST") <i>Zig</i> function declarations.</p>
+      @partial link("RESTful", "https://en.wikipedia.org/wiki/REST")
+      <i>Zig</i> function declarations.
+    </p>
   </div>
 
   <h4 class="flex-initial text-xl font-bold text-[{{jetzig_orange}}]"><i class="fa-solid fa-code fa-fw me-2"></i> HTML</h4>

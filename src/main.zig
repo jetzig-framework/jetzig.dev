@@ -34,7 +34,7 @@ pub const jetzig_options = struct {
             "</p>",
         };
         pub const code = .{
-            "<span class='whitespace-nowrap font-mono bg-gray-200 p-2 text-black'>",
+            "<span class='whitespace-nowrap font-mono bg-sky-100 px-2 py-1 text-sky-800 rounded'>",
             "</span>",
         };
 

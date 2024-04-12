@@ -59,6 +59,7 @@
       @partial code("zig build install")
     </li>
     <li>Run the compiled executable:
-      @partial code("zig-out/bin/jetzig --help")</li>
+      @partial code("zig-out/bin/jetzig --help")
+    </li>
   </ul>
 </div>

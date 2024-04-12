@@ -4,8 +4,21 @@
     <li>
       @partial documentation_link("Quickstart", "quickstart")
     </li>
+
     <li>
-      @partial documentation_link("Zmpl", "zmpl/introduction")
+      @partial documentation_link("Requests", "requests/introduction")
+    </li>
+    <ul class="list-none ms-4">
+      <li>
+        @partial documentation_link("Routing", "requests/routing")
+      </li>
+      <li>
+        @partial documentation_link("Rendering", "requests/rendering")
+      </li>
+    </ul>
+
+    <li>
+      @partial documentation_link("Zmpl Templates", "zmpl/introduction")
     </li>
     <ul class="list-none ms-4">
       <li>

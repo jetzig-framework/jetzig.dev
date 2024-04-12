@@ -2,7 +2,7 @@
 
 _Zmpl_ templates use various modes that influence how content inside each mode block is rendered.
 
-Modes are selected by the `@` character followed by the mode name. Mode blocks are delimited by `{` and `}`.
+Modes are selected by the `@` character followed by the mode name. Mode blocks are delimited by `{` and `}` (see the _Custom Delimiters_ below if braces do not work in your situation).
 
 The following modes are available:
 
@@ -127,7 +127,7 @@ pub const jetzig_options = struct {
 };
 ```
 
-#### Dynamic Markdown Routing
+### Dynamic Markdown Routing
 
 While using _Markdown_ in templates can be very convenient, you may find that you have a lot of static _Markdown_ content and setting up a _View_ for each file would be burdensome.
 
@@ -144,3 +144,55 @@ For example, this documentation is powered by a single _View_ which then uses _h
 ```
 
 The text you are reading now is in a file named `src/app/views/documentation/sections/zmpl/modes.md`.
+
+## Custom Delimiters
+
+If you find that the default delimiters `{` and `}` do not work in a given situation, e.g. if you are embedding _Javascript_ inside a mode block, [heredoc](https://en.wikipedia.org/wiki/Here_document)-style delimiters are supported. To use a custom delimiter, replace the opening brace with any string you like, and then close the block with the same string on its own line.
+
+Note that the root mode block (i.e. content that of the template that does not have an explicit mode block) ignores braces and is only delimited by the start end end of the file so, in most cases, you can use `<script>` and `<style>` tags without any concern. e.g., this example (taken from this website's source code) will work fine if not inside a mode block:
+
+```html
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.querySelector("#navbar-default");
+
+    document.querySelector("#burger-menu").addEventListener("click", () => {
+      navbar.classList.toggle("hidden"); });
+
+    document.querySelectorAll("#navbar-default a").forEach(element => {
+      element.addEventListener("click", () => {
+        navbar.classList.add("hidden")
+      });
+    });
+  });
+</script>
+```
+
+_Zmpl_ does not attempt to parse braces unless:
+
+1. They are the first non-whitespace character on a line
+1. They are used inside a `@zig` mode block.
+
+This allows you to use braces within your _HTML_ content without being concerned about how they will impact _Zmpl_'s document structure.
+
+The following example taken from the _Zmpl_ test suite shows how custom delimiters can be used to avoid scenarios where braces are not suitable as delimiters:
+
+```zig
+@markdown MARKDOWN
+  # Built-in markdown support
+
+  * [jetzig.dev](https://www.jetzig.dev/)
+
+  @zig ZIG
+    if (true) {
+      @html HTML
+        <script>
+          const foo = () => {
+            console.log("hello");
+          };
+        </script>
+      HTML
+    }
+  ZIG
+MARKDOWN
+```

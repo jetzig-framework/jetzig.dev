@@ -27,6 +27,8 @@
 }
 
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="absolute ms-2 mt-2"><img alt="Happy New Year!" src="/nepal.small.png" /></div>
+
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <img src="/jetzig.png" alt="Jetzig Logo" class="h-8">
 
@@ -120,5 +122,8 @@
 
     document.querySelectorAll("#navbar-default a").forEach(element => {
       element.addEventListener("click", () => {
-        navbar.classList.add("hidden") }); }); });
+        navbar.classList.add("hidden")
+      });
+    });
+  });
 </script>
