@@ -22,6 +22,8 @@ _JSON_ rendering occurs when the appropriate request format is received (see the
 
 It _Jetzig_, template data and _JSON_ data are interchangeable. Any values created with the `data` function parameter are automatically rendered when a _JSON_-format request arrives.
 
+See the _Data_ documentation for more details.
+
 ## Example
 
 The below example, taken from the `downloads.zig` view of this website shows a complete view function. It is automatically capable of responding to _JSON_ and _HTML_ requests.
@@ -43,15 +45,15 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
     try root.put("downloads", downloads);
 
-    const file = try std.fs.openFileAbsolute("/var/www/jetzig/downloads.json", .{});
+    const file = try std.fs.openFileAbsolute("/var/www/jetzig_downloads.json", .{});
     defer file.close();
     const json = try file.readToEndAlloc(request.allocator, 1024);
-    const parsed = try std.json.parseFromSlice([]Download, request.allocator, json, .{});
+    const downloads_data = try std.json.parseFromSlice([]Download, request.allocator, json, .{});
 
-    for (parsed.value) |value| {
+    for (downloads_data.value) |download_datum| {
         var download = try data.object();
-        try download.put("title", data.string(value.title));
-        try download.put("path", data.string(value.path));
+        try download.put("title", data.string(download_datum.title));
+        try download.put("path", data.string(download_datum.path));
         try downloads.append(download);
     }
 

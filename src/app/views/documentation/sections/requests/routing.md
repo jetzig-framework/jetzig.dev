@@ -28,6 +28,12 @@ Apart from `index` and `post`, all functions receive the final component of the 
 
 All functions always receive receive `*jetzig.Request` and `*jetzig.Data` arguments and return `!jetzig.View` (see _Rendering_ for more information).
 
+## Public Content
+
+If the **root** directory of your project has a `public/` directory, _Jetzig_ will serve any files in this location directly. The appropriate _MIME_ type is selected from the file extension and added to a `Content-Type` header.
+
+Although serving content from this directory is fully supported, it is highly recommended to serve this content via a separate web server such as [Nginx](https://www.nginx.com/) or via a [Content Delivery Network](https://en.wikipedia.org/wiki/Content_delivery_network), allowing your _Jetzig_ server to focus exclusively on serving dynamic content.
+
 ## Function Signatures
 
 ```zig

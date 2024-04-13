@@ -96,13 +96,15 @@ Some convenience values are available in all _Zmpl_ templates which can be used 
 
 ## Markdown mode
 
-`markdown` mode allows you to use _Markdown_ syntax to render _HTML_. This mode is powered by the [zmd](https://github.com/jetzig-framework/zmd) library (written in 100% _Zig_!), a component of the _Jetzig_ framework.
+`markdown` mode allows you to use _Markdown_ syntax to render _HTML_. This mode is powered by [zmd](https://github.com/jetzig-framework/zmd), a pure-_Zig_ _Markdown_ library authored _Jetzig_ developers.
 
 Just like `html` mode, [references](/documentation/sections/zmpl/references) are fully supported. Internally, all content in `markdown` mode is parsed directly to _Zmpl_'s `html` parser.
 
-```markdown
+```zig
 @markdown {
     Some _very convenient_ markdown.
+
+    References are supported too: {{.user.email}}
 }
 ```
 

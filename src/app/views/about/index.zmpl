@@ -21,6 +21,10 @@
 
   <p class="text-gray-500 mt-2">If you are looking for a <i>Zig</i> web framework comparable to
   @partial link("Rails", "https://rubyonrails.org/")
+  ,
+  @partial link("Django", "https://www.djangoproject.com/")
+  , or
+  @partial link("Phoenix", "https://www.phoenixframework.org/")
   then you have come to the right place.</p>
 
   <p class="text-gray-500 mt-2">Visit our
@@ -73,6 +77,7 @@
         <li>Middleware interface</li>
         <li>MIME type inference</li>
         <li>CLI tool with generators/scaffolding</li>
+        <li>Production server readiness (daemonization, file logging)</li>
         <li>
           @partial link("htmx", "https://htmx.org/")
           middleware</li>
@@ -83,11 +88,10 @@
       @partial h4("<i class=\"fa-sharp fa-light fa-clock fa-fw be-2\"></i> Pending")
       <ul class="list-disc text-gray-500 ms-6 leading-8">
         <li>Environment configurations (development, staging, production, etc.)</li>
-        <li>Production server readiness (daemonization, file logging)</li>
         <li>Development mode debug page</li>
         <li>Background jobs</li>
         <li>
-          @link("Tailwind", "https://tailwindcss.com/")
+          @partial link("Tailwind", "https://tailwindcss.com/")
           middleware</li>
         <li>General purpose cache</li>
         <li>Custom (non-RESTful) routing</li>
@@ -95,6 +99,7 @@
           @partial code("keep-alive")
         </li>
         <li>Websockets</li>
+        <li>Database integration</li>
         <li>Email delivery</li>
         <li>Email receipt (via AWS SES, Sendgrid, etc.)</li>
       </ul>
