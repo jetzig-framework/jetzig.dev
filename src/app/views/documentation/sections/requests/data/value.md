@@ -2,7 +2,7 @@
 
 The generic data type used throughout _Jetzig_ is `*jetzig.data.Value`.
 
-This type used for _Zmpl_ template values, _JSON_ output, request parameters, and will soon be used for cache and background jobs.
+This type is used for _Zmpl_ template values, _JSON_ output, request parameters, and will soon be used for cache and background jobs.
 
 ```zig
 pub const Value = union(enum) {
