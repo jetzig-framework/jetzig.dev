@@ -103,3 +103,15 @@ To use the slots passed to a partial, iterate over the `slots` array using a `fo
   }
 </div>
 ```
+
+The `slots` value is just a `[][]const u8`, and _Zmpl_ is capable of rendering this type directly from a _Reference_ by joining the elements as a line-separated string.
+
+If you don't need to wrap each slot in any extra markup, render the whole array directly using this short-hand:
+
+```zig
+<div>
+  <h2>A partial with slots</h2>
+
+  {{slots}}
+</div>
+```
