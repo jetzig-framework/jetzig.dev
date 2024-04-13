@@ -1,5 +1,9 @@
 # Quickstart
 
+## Requirements
+
+_Jetzig_ requires _Zig_ `0.12`. Fetch the latest nightly from the _Zig_ website: [https://ziglang.org/download/](https://ziglang.org/download/)
+
 ## Download
 
 Visit the [downloads](/downloads.html) page and follow the instructions download the appropriate pre-compiled binary for your operating system.
