@@ -8,5 +8,29 @@
     <li>
       @partial link("hello@jetzig.dev", "mailto:hello@jetzig.dev?subject=Email from jetzig.dev")
     </li>
-  </ul
+  </ul>
+
+  <hr class="mt-4" />
+
+  @partial h2("Contact form")
+
+  <div class="mt-4">
+    <form action="/contact" method="POST">
+      <div class="grid grid-flow-dense grid-cols-4 gap-4">
+        @partial h3("Your email address")
+
+        <div class="col-span-3 mt-3">
+          <input class="border p-1" type="text" name="from" placeholder="user@example.com" />
+        </div>
+
+        @partial h3("Message")
+
+        <div class="col-span-3 mt-3">
+          <textarea class="border p-1" cols="30" rows="10" name="message" placeholder="Enter message here"></textarea>
+        </div>
+      </div>
+
+      <input class="border py-1 px-2 bg-[#f7931e] text-white" type="submit" value="Send Message" />
+    </form>
+  </div>
 </div>

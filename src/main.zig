@@ -8,6 +8,18 @@ pub const jetzig_options = struct {
         jetzig.middleware.HtmxMiddleware,
     };
 
+    pub const force_development_email_delivery = false;
+
+    pub const job_worker_threads: usize = 4;
+
+    pub const smtp: jetzig.mail.SMTPConfig = .{
+        .port = 1025,
+        .encryption = .none, // .insecure, .none, .tls, .start_tls
+        .host = "localhost",
+        .username = null,
+        .password = null,
+    };
+
     pub const markdown_fragments = struct {
         pub const root = .{
             "<div class='p-5'>",
