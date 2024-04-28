@@ -2,7 +2,9 @@
 
 ## Requirements
 
-_Jetzig_ requires _Zig_ `0.12`. Fetch the latest nightly from the _Zig_ website: [https://ziglang.org/download/](https://ziglang.org/download/)
+_Jetzig_ requires _Zig_ `0.12`. Fetch the latest release from the _Zig_ website: [https://ziglang.org/download/](https://ziglang.org/download/)
+
+`0.13` is also supported but nightly builds of _Zig_ may introduce breakage. `0.12` support will be dropped once `0.13` introduces enough changes that compatibility with both versions is no longer practical.
 
 ## Download
 
