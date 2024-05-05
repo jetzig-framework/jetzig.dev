@@ -7,7 +7,7 @@ Although _TLS 1.3_ is available, it should be used with the following understand
 * _Zig_'s _TLS_ implementation is still new and has not been battle-tested.
 * _AWS SES_ claims to support _TLS 1.3_ but this does not appear to be true (yet).
 
-For the above reasons, at the time of writing, it is recommended to run a local _SMTP_ forwarder. For example, [https://github.com/juanluisbaptiste/docker-postfix](Juan Luis Baptiste)'s [docker-postfix](https://github.com/juanluisbaptiste/docker-postfix) provides a very simple way to run a local _SMTP_ server capable of forwarding mails securely to an external _SMTP_ service.
+For the above reasons, at the time of writing, it is recommended to run a local _SMTP_ forwarder. For example, [Juan Luis Baptiste](https://github.com/juanluisbaptiste/docker-postfix)'s [docker-postfix](https://github.com/juanluisbaptiste/docker-postfix) provides a very simple way to run a local _SMTP_ server capable of forwarding mails securely to an external _SMTP_ service.
 
 ## SMTP Configuration
 
