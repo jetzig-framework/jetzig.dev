@@ -65,5 +65,59 @@
         @partial documentation_link("Partials", "zmpl/partials")
       </li>
     </ul>
+
+    <li>
+      <b>
+        @partial documentation_link("Jobs", "jobs/introduction")
+      </b>
+    </li>
+    <ul class="list-none ms-4 leading-7">
+      <li>
+        @partial documentation_link("Configuration", "jobs/configuration")
+      </li>
+      <li>
+        @partial documentation_link("Creating Jobs", "jobs/create")
+      </li>
+      <li>
+        @partial documentation_link("Scheduling Jobs", "jobs/schedule")
+      </li>
+    </ul>
+
+    <li>
+      <b>
+        @partial documentation_link("KV Store", "store/introduction")
+      </b>
+    </li>
+    <ul class="list-none ms-4 leading-7">
+      <li>
+        @partial documentation_link("Configuration", "store/configuration")
+      </li>
+      <li>
+        @partial documentation_link("Usage", "store/usage")
+      </li>
+      <li>
+        @partial documentation_link("Example", "store/example")
+      </li>
+    </ul>
+
+    <li>
+      <b>
+        @partial documentation_link("Cache", "cache/introduction")
+      </b>
+    </li>
+    <ul class="list-none ms-4 leading-7">
+      <li>
+        @partial documentation_link("Configuration", "cache/configuration")
+      </li>
+      <li>
+        @partial documentation_link("Example", "cache/example")
+      </li>
+    </ul>
+
+    <li>
+      <b>
+        @partial documentation_link("Email", "email")
+      </b>
+    </li>
   </ul>
 </div>

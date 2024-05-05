@@ -69,6 +69,31 @@ Assuming the above partial is named `src/app/views/_email_link.zmpl`, it can be 
 </div>
 ```
 
+### Default arguments
+
+Default values for arguments can be specified using the `=` operator:
+
+```zig
+@args href: []const u8, title: []const u8, target: []const u8 = "_self"
+
+<a href="{{href}}" target="{{target}}">{{title}}</a>
+```
+
+If the above partial is named `_link.zmpl` it can now be invoked with any of the following:
+
+```zig
+@partial link("https://jetzig.dev/", "Jetzig Website")
+```
+```zig
+@partial link("https://jetzig.dev/", "Jetzig Website", "_blank")
+```
+```zig
+@partial link(title: "Jetzig Website", href: "https://jetzig.dev/")
+```
+```zig
+@partial link(title: "Jetzig Website", href: "https://jetzig.dev/", target: "_blank")
+```
+
 ## Slots
 
 A _slot_ is a chunk of _HTML_ that can be passed to any partial. All partials have a `slots` value available as an array of `[]const u8`. Slots can include any references which are rendered into strings before being passed to the partial function.

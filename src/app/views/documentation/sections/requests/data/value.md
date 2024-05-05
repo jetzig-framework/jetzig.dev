@@ -58,6 +58,40 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 }
 ```
 
+### `getT`
+
+```zig
+pub fn getT(self: *Data, comptime T: ValueType, key: []const u8) ?switch (T) {
+    .object => *Object,
+    .array => *Array,
+    .string => []const u8,
+    .float => f128,
+    .integer => i128,
+    .boolean => bool,
+    .Null => null,
+}
+```
+
+Returns the underlying type of the `*Value` matching the given key. Returns `null` if a match is found but with the wrong type.
+
+`getT` can significantly reduce boilerplate by removing the need to `switch` on `Value`.
+
+Note that the following example is not identical to the example given for `get` as it does not detect when the `redirect` query param is provided but with no value. If this functionality is required, `get` must be used with `switch`.
+
+```zig
+pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+    _ = data;
+
+    const params = try request.params();
+
+    if (params.getT(.string, "redirect")) |location| {
+        return request.redirect(location, .moved_permanently);
+    } else {
+        return request.render(.ok);
+    }
+}
+```
+
 ### `chain`
 
 ```zig
