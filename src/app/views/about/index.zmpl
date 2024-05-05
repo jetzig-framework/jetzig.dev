@@ -81,6 +81,9 @@
         <li>
           @partial link("htmx", "https://htmx.org/", "_blank")
           middleware</li>
+        <li>General purpose cache</li>
+        <li>Email delivery</li>
+        <li>Background jobs</li>
       </ul>
     </div>
 
@@ -89,18 +92,15 @@
       <ul class="list-disc text-gray-500 ms-6 leading-8">
         <li>Environment configurations (development, staging, production, etc.)</li>
         <li>Development mode debug page</li>
-        <li>Background jobs</li>
         <li>
           @partial link("Tailwind", "https://tailwindcss.com/", "_blank")
           middleware</li>
-        <li>General purpose cache</li>
         <li>Custom (non-RESTful) routing</li>
         <li>HTTP
           @partial code("keep-alive")
         </li>
         <li>Websockets</li>
         <li>Database integration</li>
-        <li>Email delivery</li>
         <li>Email receipt (via AWS SES, Sendgrid, etc.)</li>
       </ul>
     </div>
