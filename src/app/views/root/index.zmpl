@@ -1,3 +1,4 @@
+@partial h1("Jetzig Web Framework", "text-center")
 <div class="mt-2 text-center">
   <img src="/jetzig.png" alt="Jetzig Logo" class="h-24 mx-auto">
   <p class="text-gray-500 mt-2 text-lg">

@@ -1,6 +1,6 @@
 .PHONY: deploy
 deploy:
-	@jetzig bundle
+	@jetzig bundle --arch x86_64
 	@scp bundle.tar.gz docs.bob.frl:
 	@ssh docs.bob.frl 'tar zxf bundle.tar.gz'
 	@ssh docs.bob.frl 'killall server || :'
