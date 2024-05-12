@@ -84,7 +84,7 @@
         @zig {
           inline for (links) |link| {
             <li>
-              <a href="#"
+              <a href="{{link.href}}"
                  hx-get="{{link.href}}"
                  hx-target="#content"
                  hx-push-url="true"
