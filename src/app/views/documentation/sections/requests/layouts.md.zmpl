@@ -33,7 +33,7 @@ Here's an example of that layout might look like:
 
   <body>
     <main>
-      {{zmpl.content}}
+      {\{zmpl.content}}
     </main>
   </body>
 </html>

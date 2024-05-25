@@ -2,14 +2,14 @@
 
 _Zmpl_ uses a simple but powerful system for references (also known as "template variables").
 
-References are delimited by `{{` and `}}`:
+References are delimited by `{\{` and `}}`:
 
 ```zig
-@zig {
+\@zig {
     const foobar = "hello";
 }
 
-<div>{{foobar}}</div>
+<div>{\{foobar}}</div>
 ```
 
 If the given value can be safely coerced to a string then the output is rendered accordingly.
@@ -33,7 +33,7 @@ If a reference begins with a `.` character then it is considered a data lookup. 
 For example:
 
 ```zig
-const jetzig = @import("jetzig");
+const jetzig = \@import("jetzig");
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     var root = try data.object();
@@ -49,8 +49,8 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 These values can now be accessed in a _Zmpl_ template:
 
 ```zig
-<div>{{.message}}</div>
-<div>We found {{.iguana_count}} iguanas!</div>
+<div>{\{.message}}</div>
+<div>We found {\{.iguana_count}} iguanas!</div>
 ```
 
 This syntax can also be used to access nested keys:
@@ -73,7 +73,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 The iguana's name can now be accessed in a template:
 
 ```zig
-<div>The iguana is named {{.iguana.name}}</div>
+<div>The iguana is named {\{.iguana.name}}</div>
 ```
 
 ## Variable/constant references
@@ -85,10 +85,10 @@ All references that do not begin with `.` are assumed to reference a value in th
 1. Arguments passed to a partial.
 
 ```zig
-@zig {
+\@zig {
     const red = "#ff0000";
 }
-<div style="color: {{color}}">Some red text</div>
+<div style="color: {\{color}}">Some red text</div>
 ```
 
 ## Zig code
@@ -96,5 +96,5 @@ All references that do not begin with `.` are assumed to reference a value in th
 If needed, arbitrary _Zig_ code can be used inside a reference. Note that this code **must** evaluate to a `[]const u8`:
 
 ```zig
-<div>{{if (true) "foo" else "bar"}}</div>
+<div>{\{if (true) "foo" else "bar"}}</div>
 ```

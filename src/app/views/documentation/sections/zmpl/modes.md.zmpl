@@ -17,13 +17,13 @@ The example below shows how to switch between different modes:
 ```zig
 <div>Some regular HTML</div>
 
-@zig {
+\@zig {
     if (std.crypto.random.int(u1) == 0) {
         <div>Some HTML inside a Zig block</div>
     }
 }
 
-@markdown {
+\@markdown {
     # Header
 
     @html {
@@ -47,7 +47,7 @@ There are two key differences between regular _HTML_ and `html` mode:
 1. Mode switches can be used to change the current mode.
 
 ```zig
-@html {
+\@html {
     <div>Some HTML</div>
     @zig {
         if (true) {
@@ -77,9 +77,9 @@ Some convenience values are available in all _Zmpl_ templates which can be used 
 * `zmpl` - the `data` argument used in views. This can be used to operate on data values directly, e.g. iterating over an array.
 
 ```zig
-@zig {
+\@zig {
     const foo = "hello";
-    <span>{{foo}}</span>
+    <span>{\{foo}}</span>
     if (std.mem.eql(u8, foo, "hello")) {
         <span>Foo was "hello"!</span>
     }
@@ -87,7 +87,7 @@ Some convenience values are available in all _Zmpl_ templates which can be used 
     if (std.mem.eql(u8, jetzig_view, "iguanas")) {
         <ul>
             for (zmpl.items(.array), 0..) |item, index| {
-                <li>Item number {{index}} is {{item}}</li>
+                <li>Item number {\{index}} is {\{item}}</li>
             }
         </ul>
     }
@@ -101,10 +101,10 @@ Some convenience values are available in all _Zmpl_ templates which can be used 
 Just like `html` mode, [references](/documentation/sections/zmpl/references) are fully supported. Internally, all content in `markdown` mode is parsed directly to _Zmpl_'s `html` parser.
 
 ```zig
-@markdown {
+\@markdown {
     Some _very convenient_ markdown.
 
-    References are supported too: {{.user.email}}
+    References are supported too: {\{.user.email}}
 }
 ```
 
@@ -180,7 +180,7 @@ This allows you to use braces within your _HTML_ content without being concerned
 The following example taken from the _Zmpl_ test suite shows how custom delimiters can be used to avoid scenarios where braces are not suitable as delimiters:
 
 ```zig
-@markdown MARKDOWN
+\@markdown MARKDOWN
   # Built-in markdown support
 
   * [jetzig.dev](https://www.jetzig.dev/)

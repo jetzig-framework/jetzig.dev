@@ -11,18 +11,15 @@
   <div>
     <ul class="list-disc text-gray-500 ms-6 leading-8">
     @zig {
-      if (try zmpl.getValue("downloads")) |downloads| {
-          var it = downloads.array.iterator();
-          while (it.next()) |download| {
-              if (download.get("title")) |title| {
-                  if (download.get("path")) |path| {
-                      <li>
-                        @partial link(title.string.value, path.string.value)
-                      </li>
-                  }
-              }
+        if (zmpl.getT(.array, "downloads")) |downloads| {
+          for (downloads) |download| {
+              const title = download.getT(.string, "title") orelse continue;
+              const path = download.getT(.string, "path") orelse continue;
+              <li>
+                @partial link(title, path)
+              </li>
           }
-      }
+        }
     }
     </ul>
   </div>

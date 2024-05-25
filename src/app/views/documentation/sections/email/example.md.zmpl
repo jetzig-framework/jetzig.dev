@@ -65,9 +65,9 @@ Following the `welcome` naming convention, this template should be named `src/ap
 Note that both `.message` (assigned in the _View_ function) and `.token` (assigned in the `deliver` function) are available:
 
 ```html
-<div>Hello! Here is an important message: {{.message}}</div>
+<div>Hello! Here is an important message: {\{.message}}</div>
 
-<div>Your secret token is: {{.token}}</div>
+<div>Your secret token is: {\{.token}}</div>
 ```
 
 ## Text template
@@ -77,9 +77,9 @@ To ensure that your email is readable by all email clients, the _Text_ part of t
 The _Text_ template should be named `src/app/mailers/welcome/text.zmpl`.
 
 ```
-Hello! Here is an important message: {{.message}}
+Hello! Here is an important message: {\{.message}}
 
-Your secret token is: {{.token}}
+Your secret token is: {\{.token}}
 ```
 
 This concludes everything you need to know about email delivery in _Jetzig_.

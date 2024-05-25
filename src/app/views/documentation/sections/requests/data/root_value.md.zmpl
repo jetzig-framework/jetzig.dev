@@ -4,7 +4,7 @@ The first call to **either** `data.object()` or `data.array()` sets the root obj
 
 The root object in a _Jetzig_ view function is:
 
-* The basis for all _Zmpl_ template references (e.g. `{{.message}}` will look for a `message` key in the root value)
+* The basis for all _Zmpl_ template references (e.g. `{\{.message}}` will look for a `message` key in the root value)
 * The returned value for all _JSON_ requests.
 
 It is strongly recommended to always use `data.object()` instead of `data.array()` as the root value, even if you only need to output a single array of items, so that you can always add more keys in future. This is advised rather than enforced to allow users to write _API_s that are compatible with existing consumers.

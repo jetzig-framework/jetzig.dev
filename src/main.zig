@@ -83,5 +83,7 @@ pub fn main() !void {
     const app = try jetzig.init(allocator);
     defer app.deinit();
 
+    app.route(.GET, "/documentation/:id*", @import("app/views/documentation.zig"), .section);
+
     try app.start(routes, .{});
 }

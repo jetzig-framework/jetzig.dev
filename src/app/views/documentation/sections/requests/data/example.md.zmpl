@@ -78,20 +78,20 @@ The template below is named `src/app/views/example/index.zmpl` and is automatica
 <h2>User</h2>
 
 <h3>Name</h3>
-{{.user.name}}
+{\{.user.name}}
 
 <h3>Email</h3>
-{{.user.email}}
+{\{.user.email}}
 
 <h2>Pets</h2>
 
-@zig {
+\@zig {
   if (zmpl.chain(&[_][]const u8{ "user", "profile", "pets" })) |pets| {
     <ul>
     for (pets.items(.array)) |pet| {
       const name = pet.get("name");
       const animal = pet.get("animal");
-      <li>{{name}} the {{animal}}</li>
+      <li>{\{name}} the {\{animal}}</li>
     }
     </ul>
   }

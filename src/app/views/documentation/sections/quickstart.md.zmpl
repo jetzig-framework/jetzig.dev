@@ -75,8 +75,8 @@ You can now use _Zmpl_'s data lookup syntax to access these values in your templ
 
 ```html
 // src/app/views/iguanas/index.zmpl
-<div>Message: {{.message}}</div>
-<div>{{.iguana_count}} iguanas!</div>
+<div>Message: {\{.message}}</div>
+<div>{\{.iguana_count}} iguanas!</div>
 ```
 
 Browse to [http://localhost:8080/iguanas.html](http://localhost:8080/iguanas.html) to see your rendered _HTML_ (the `.html` exnension is optional) or visit [http://localhost:8080/iguanas.json](http://localhost:8080/iguanas.json) to see the raw _JSON_ data.

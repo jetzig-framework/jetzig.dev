@@ -45,7 +45,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 The `message` field can then be used in `html.zmpl` and `text.zmpl`. e.g., `src/app/mailers/iguanas/html.zmpl` might look like this:
 
 ```html
-<div>{{.message}}</div>
+<div>{\{.message}}</div>
 <div>Thank you for your interest in Jetzig.</div>
 ```
 If you need to customize template data specifically for the _Mailer_, modify the `params` argument in your _Mailer_'s `deliver` function:

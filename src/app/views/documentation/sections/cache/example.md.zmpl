@@ -34,7 +34,7 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
 ```html
 <div>
-  <span>Cached value: {{.message}}</span>
+  <span>Cached value: {\{.message}}</span>
 </div>
 ```
 
@@ -42,7 +42,7 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
 ```html
 <div>
-  <span>Value "{{.message}}" added to cache</span>
+  <span>Value "{\{.message}}" added to cache</span>
 </div>
 ```
 
