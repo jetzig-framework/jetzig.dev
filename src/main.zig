@@ -23,7 +23,7 @@ pub const jetzig_options = struct {
 
     pub const markdown_fragments = struct {
         pub const root = .{
-            "<div class='p-5'>",
+            "<div class='md:p-5 sm:p-1'>",
             "</div>",
         };
         pub const h1 = .{
@@ -63,13 +63,13 @@ pub const jetzig_options = struct {
 
         pub fn block(allocator: std.mem.Allocator, node: zmd.Node) ![]const u8 {
             return try std.fmt.allocPrint(allocator,
-                \\<pre class="font-mono mt-4 ms-3 bg-gray-900 p-2 text-white"><code class="language-{?s}">{s}</code></pre>
+                \\<pre class="font-mono mt-4 ms-3 sm:ms-0 bg-gray-900 p-2 sm:p-0 text-white"><code class="language-{?s}">{s}</code></pre>
             , .{ node.meta, node.content });
         }
 
         pub fn link(allocator: std.mem.Allocator, node: zmd.Node) ![]const u8 {
             return try std.fmt.allocPrint(allocator,
-                \\<a class="underline decoration-sky-500" href="{0s}" title={1s}>{1s}</a>
+                \\<a class="underline text-sky-500 decoration-sky-500" href="{0s}" title={1s}>{1s}</a>
             , .{ node.href.?, node.title.? });
         }
     };
@@ -83,7 +83,7 @@ pub fn main() !void {
     const app = try jetzig.init(allocator);
     defer app.deinit();
 
-    app.route(.GET, "/documentation/:id*", @import("app/views/documentation.zig"), .section);
+    app.route(.GET, "/documentation/:args*", @import("app/views/documentation.zig"), .section);
 
     try app.start(routes, .{});
 }

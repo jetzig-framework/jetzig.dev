@@ -31,7 +31,7 @@ The template data for an email is identical to the response data for a request. 
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     try root.put("message", "Welcome to Jetzig!");
 

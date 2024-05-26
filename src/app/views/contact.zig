@@ -9,7 +9,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 }
 
 pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var object = try data.object();
+    var object = try data.root(.object);
     const params = try request.params();
 
     try object.put("from", params.get("from"));

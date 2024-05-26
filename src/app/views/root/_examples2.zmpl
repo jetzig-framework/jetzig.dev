@@ -1,5 +1,5 @@
 <div>
-@partial h3("JSON by default on all endpoints", "ms-5")
+@partial examples_header("JSON by default on all endpoints")
 
 @markdown MARKDOWN
 
@@ -22,12 +22,5 @@ MARKDOWN
 <br/>
 @partial link(href: "/example.html", title: "Live Example (HTML)", target: "_blank")
 </p>
-
-</div>
-
-<div class="overflow-x-clip">
-@partial h3("Readable development logs", "ms-5")
-
-<img src="/logs.png" alt="Logs" class="ms-5" />
 
 </div>

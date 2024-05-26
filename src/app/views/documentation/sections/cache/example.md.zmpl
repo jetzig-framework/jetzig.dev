@@ -8,14 +8,14 @@ The example below provides a `post` _View_ function that stores a `message` para
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
     try root.put("message", try request.cache.get("message"));
 
     return request.render(.ok);
 }
 
 pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     const params = try request.params();
 

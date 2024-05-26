@@ -19,7 +19,7 @@ The example below demonstrates each of the available type creation functions:
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     try root.put("name", data.string("Bob"));
     try root.put("balloons", data.integer(99));

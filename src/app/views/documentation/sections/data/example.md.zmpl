@@ -8,7 +8,7 @@ See each section in the _Data_ documentation to learn more about how each `Value
 // src/app/views/example.zig
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     var user = try data.object();
     try root.put("user", user);

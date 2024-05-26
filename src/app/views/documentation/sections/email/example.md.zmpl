@@ -8,7 +8,7 @@ Use `jetzig generate view` and `jetzig generate mailer` to generate the majority
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
     try root.put("message", data.string("Welcome to Jetzig!"));
 
     const params = try request.params();

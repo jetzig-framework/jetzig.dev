@@ -36,7 +36,7 @@ For example:
 const jetzig = \@import("jetzig");
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
     try root.put("message", data.string("Welcome to Jetzig!"));
     try root.put("iguana_count", data.integer(100_000));
 
@@ -59,7 +59,7 @@ This syntax can also be used to access nested keys:
 const jetzig = @import("jetzig");
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     var iguana = try data.object();
     try iguana.put("name", data.string("Ziggy"));

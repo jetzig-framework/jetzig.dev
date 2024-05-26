@@ -5,7 +5,7 @@ const jetzig = @import("jetzig");
 // Use `jetzig.http.status_codes.get(request.status_code)` to get a value that provides string
 // versions of the error code and message for use in templates.
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
     var error_info = try data.object();
 
     const status = jetzig.http.status_codes.get(request.status_code);

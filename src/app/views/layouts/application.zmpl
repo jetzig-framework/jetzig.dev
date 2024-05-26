@@ -4,7 +4,6 @@
   <head>
     <title>Jetzig Web Framework</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.7.0/dist/htmx.js"></script>
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/prism.css">
@@ -25,6 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jetzig is a batteries-included web framework written in Zig">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
 
   <body class="bg-gray-100">
@@ -32,7 +32,7 @@
       @partial layouts/application/nav
     </header>
 
-    <main class="container mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+    <main class="container mx-auto mt-8 p-2 md:p-6 bg-white rounded-lg shadow-md">
       <div id="content">
         {{zmpl.content}}
       </div>

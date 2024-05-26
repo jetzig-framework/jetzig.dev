@@ -51,7 +51,7 @@ If we have the following view function:
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
     var user = try data.object();
 
     try user.put("email", data.string("user\@example.com"));

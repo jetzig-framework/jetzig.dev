@@ -1,5 +1,2 @@
 @args content: []const u8
-@zig {
-  const jetzig_orange = "#f7931e";
-}
-<h4 class="text-[{{jetzig_orange}}] mt-4 mb-2">{{content}}</h4>
+<h4 class="text-jetzig-orange mt-2 mb-2">{{content}}</h4>

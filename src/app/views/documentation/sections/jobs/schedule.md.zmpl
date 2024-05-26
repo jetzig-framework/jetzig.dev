@@ -54,7 +54,7 @@ The below example shows how a _View_ function can parse request params and use t
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     const params = try request.params();
     const message = params.get("message");

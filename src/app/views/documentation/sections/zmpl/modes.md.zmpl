@@ -26,7 +26,7 @@ The example below shows how to switch between different modes:
 \@markdown {
     # Header
 
-    @html {
+    \@html {
         <div>Some HTML inside markdown</div>
     }
 
@@ -37,7 +37,7 @@ The example below shows how to switch between different modes:
 
 ## HTML mode
 
-`html` mode can be set explicitly by using the `@html` pragma. The root document is always in `html` mode by default.
+`html` mode can be set explicitly by using the `\@html` pragma. The root document is always in `html` mode by default.
 
 Any _HTML_ can be included in `html` mode blocks and there are no limitations on tag type, etc.
 
@@ -49,7 +49,7 @@ There are two key differences between regular _HTML_ and `html` mode:
 ```zig
 \@html {
     <div>Some HTML</div>
-    @zig {
+    \@zig {
         if (true) {
             <span>true is true</span>
         } else {
@@ -173,7 +173,7 @@ Note that the root mode block (i.e. content that of the template that does not h
 _Zmpl_ does not attempt to parse braces unless:
 
 1. They are the first non-whitespace character on a line
-1. They are used inside a `@zig` mode block.
+1. They are used inside a `\@zig` mode block.
 
 This allows you to use braces within your _HTML_ content without being concerned about how they will impact _Zmpl_'s document structure.
 
@@ -185,9 +185,9 @@ The following example taken from the _Zmpl_ test suite shows how custom delimite
 
   * [jetzig.dev](https://www.jetzig.dev/)
 
-  @zig ZIG
+  \@zig ZIG
     if (true) {
-      @html HTML
+      \@html HTML
         <script>
           const foo = () => {
             console.log("hello");

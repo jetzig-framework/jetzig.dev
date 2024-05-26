@@ -6,7 +6,7 @@ As with all _Jetzig_ _Data_ usage, any _JSON_-compatible value can be saved to t
 
 ```zig
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
 
     // Fetch and remove string from the KV store. If it exists, store it in the root data object,
     // otherwise store a string value to be picked up by the next request.

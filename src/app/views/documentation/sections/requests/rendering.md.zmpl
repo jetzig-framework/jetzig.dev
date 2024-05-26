@@ -40,7 +40,7 @@ const jetzig = @import("jetzig");
 pub const layout = "application";
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.object();
+    var root = try data.root(.object);
     var downloads = try data.array();
 
     try root.put("downloads", downloads);
