@@ -14,66 +14,83 @@
   </p>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-[10rem_auto] gap-8 mt-8 text-gray-500">
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-arrows-turn-to-dots fa-fw me-2"></i> Routing</h4>
-  <div>
-    <p>Simple, file-based routing to
-      @partial link("RESTful", "https://en.wikipedia.org/wiki/REST")
-      <i>Zig</i> function declarations.
-    </p>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-arrows-turn-to-dots fa-fw me-2"></i> Routing</h4>
+    <div>
+      <p>Simple, file-based routing to
+        @partial link("RESTful", "https://en.wikipedia.org/wiki/REST")
+        <i>Zig</i> function declarations.
+      </p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-code fa-fw me-2"></i> HTML</h4>
-  <div>
-    <p>Templating with
-      @partial link(title: "Zmpl", href: "https://github.com/jetzig-framework/zmpl")
-      provides <b>layouts</b>, <b>partials</b>, and build-time <b>static content rendering</b>.</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-code fa-fw me-2"></i> HTML</h4>
+    <div>
+      <p>Templating with
+        @partial link(title: "Zmpl", href: "https://github.com/jetzig-framework/zmpl")
+        provides <b>layouts</b>, <b>partials</b>, and build-time <b>static content rendering</b>.</p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-brackets-curly fa-fw me-2"></i> JSON</h4>
-  <div>
-    <p>All endpoints render JSON by default, providing a RESTful API for free.</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-brackets-curly fa-fw me-2"></i> JSON</h4>
+    <div>
+      <p>All endpoints render JSON by default, providing a RESTful API for free.</p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-sharp fa-solid fa-fw fa-gauge-max"></i> Speed</h4>
-  <div>
-    <p>Powered by
-      @partial link("http.zig", "https://github.com/karlseguin/http.zig")
-      for competitive performance and scalability.
-    </p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-sharp fa-solid fa-fw fa-gauge-max"></i> Speed</h4>
+    <div>
+      <p>Powered by
+        @partial link("http.zig", "https://github.com/karlseguin/http.zig")
+        for competitive performance and scalability.
+      </p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-wrench fa-fw me-2"></i> Tooling</h4>
-  <div>
-    <p>User-friendly CLI tooling for creating projects and adding new components.</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-wrench fa-fw me-2"></i> Tooling</h4>
+    <div>
+      <p>User-friendly CLI tooling for creating projects and adding new components.</p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-gears fa-fw me-2"></i> Middleware</h4>
-  <div>
-    <p>Hook into and manipulate requests/responses with a custom middleware chain. Built-in middleware for
-    @partial link("htmx", "https://htmx.org/")
-    .</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-gears fa-fw me-2"></i> Middleware</h4>
+    <div>
+      <p>Hook into and manipulate requests/responses with a custom middleware chain. Built-in middleware for
+      @partial link("htmx", "https://htmx.org/")
+      .</p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-cookie fa-fw me-2"></i> Cookies</h4>
-  <div>
-    <p>Cookies, user sessions, and request/response headers out of the box.</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-cookie fa-fw me-2"></i> Cookies</h4>
+    <div>
+      <p>Cookies, user sessions, and request/response headers out of the box.</p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-heart fa-fw me-2"></i> Community</h4>
-  <div>
-    <p>Join us on
-    @partial link("Discord", "https://discord.gg/eufqssz7X6")
-    &ndash; we're friendly and active.</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-heart fa-fw me-2"></i> Community</h4>
+    <div>
+      <p>Join us on
+      @partial link("Discord", "https://discord.gg/eufqssz7X6")
+      &ndash; we're friendly and active.</p>
+    </div>
   </div>
 
-  <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-code-pull-request fa-fw me-2"></i> Open Source</h4>
-  <div>
-    <p>Free, open source, and always will be. <i>Jetzig</i> is
-    @partial link("MIT", "https://en.wikipedia.org/wiki/MIT_License")
-    licensed.</p>
+  <div class="p-4">
+    <h4 class="flex-initial text-xl font-bold text-jetzig-orange"><i class="fa-solid fa-code-pull-request fa-fw me-2"></i> Open Source</h4>
+    <div>
+      <p>Free, open source, and always will be. <i>Jetzig</i> is
+      @partial link("MIT", "https://en.wikipedia.org/wiki/MIT_License")
+      licensed.</p>
+    </div>
   </div>
-
 </div>
 
 <hr class="mt-8" />
