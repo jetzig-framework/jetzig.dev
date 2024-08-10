@@ -80,7 +80,7 @@ pub fn main() !void {
     defer std.debug.assert(gpa.deinit() == .ok);
     const allocator = gpa.allocator();
 
-    const app = try jetzig.init(allocator);
+    var app = try jetzig.init(allocator);
     defer app.deinit();
 
     app.route(.GET, "/documentation/:args*", @import("app/views/documentation.zig"), .section);
