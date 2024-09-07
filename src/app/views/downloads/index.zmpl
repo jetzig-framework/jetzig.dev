@@ -12,7 +12,7 @@
     <ul class="list-disc text-gray-500 ms-6 leading-8">
     @zig {
         if (zmpl.getT(.array, "downloads")) |downloads| {
-          for (downloads) |download| {
+          for (downloads.items()) |download| {
               const title = download.getT(.string, "title") orelse continue;
               const path = download.getT(.string, "path") orelse continue;
               <li>

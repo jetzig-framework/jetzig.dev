@@ -21,6 +21,16 @@ pub const jetzig_options = struct {
         .password = null,
     };
 
+    pub const Schema = @import("app/database/Schema.zig");
+    pub const database: jetzig.database.DatabaseOptions = .{
+        .adapter = .postgresql,
+        .hostname = "localhost",
+        .port = 5432,
+        .username = "postgres",
+        .password = "password",
+        .database = "jetzig_website",
+    };
+
     pub const markdown_fragments = struct {
         pub const root = .{
             "<div class='md:p-5 sm:p-1'>",
