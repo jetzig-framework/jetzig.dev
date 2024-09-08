@@ -11,10 +11,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     defer result.deinit();
 
     var root = try data.root(.object);
-    var blogs = try data.array();
-    try root.put("blogs", blogs);
-
-    while (try result.next(query)) |row| try blogs.append(row);
+    try root.put("blogs", try result.all(query));
 
     return request.render(.ok);
 }
