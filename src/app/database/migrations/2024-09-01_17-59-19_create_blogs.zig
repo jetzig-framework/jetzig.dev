@@ -7,8 +7,8 @@ pub fn up(repo: *jetquery.Repo) !void {
         "blogs",
         &.{
             t.primaryKey("id", .{}),
-            t.column("title", .string, .{}),
-            t.column("content", .text, .{}),
+            t.column("title", .string, .{ .not_null = true }),
+            t.column("content", .text, .{ .not_null = true }),
             t.timestamps(.{}),
         },
         .{},

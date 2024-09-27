@@ -4,7 +4,9 @@ const jetzig = @import("jetzig");
 pub const layout = "application";
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    const query = request.query(.Blogs).select(&.{ .id, .title });
+    const query = jetzig.database.Query(.Blogs)
+        .select(&.{})
+        .orderBy(.{ .created_at = .descending });
     var result = try request.repo.execute(query);
 
     var root = try data.root(.object);
@@ -14,11 +16,9 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 }
 
 pub fn get(id: []const u8, request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    const query = request.query(.Blogs).select(&.{ .id, .title, .content }).where(.{ .id = id }).limit(1);
-    var result = try request.repo.execute(query);
-
     var root = try data.root(.object);
-    if (try result.next(query)) |blog| {
+
+    if (try jetzig.database.Query(.Blogs).find(id).execute(request.repo)) |blog| {
         try root.put("blog", blog);
     } else {
         return request.render(.not_found);
@@ -36,8 +36,9 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     const params = try request.params();
     const title = params.get("title").?;
     const content = params.get("content").?;
-    const query = request.query(.Blogs).insert(.{ .title = title, .content = content });
-    _ = try request.repo.execute(query);
+    try jetzig.database.Query(.Blogs)
+        .insert(.{ .title = title, .content = content })
+        .execute(request.repo);
     return request.redirect("/blogs", .moved_permanently);
 }
 
