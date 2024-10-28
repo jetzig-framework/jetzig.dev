@@ -1,8 +1,8 @@
 const std = @import("std");
 const jetquery = @import("jetquery");
-const t = jetquery.table;
+const t = jetquery.schema.table;
 
-pub fn up(repo: *jetquery.Repo) !void {
+pub fn up(repo: anytype) !void {
     try repo.createTable(
         "blogs",
         &.{
@@ -15,6 +15,6 @@ pub fn up(repo: *jetquery.Repo) !void {
     );
 }
 
-pub fn down(repo: *jetquery.Repo) !void {
+pub fn down(repo: anytype) !void {
     try repo.dropTable("blogs", .{});
 }

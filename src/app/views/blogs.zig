@@ -4,13 +4,13 @@ const jetzig = @import("jetzig");
 pub const layout = "application";
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    const query = jetzig.database.Query(.Blogs)
-        .select(&.{})
-        .orderBy(.{ .created_at = .descending });
-    var result = try request.repo.execute(query);
+    const blogs = try jetzig.database.Query(.Blogs)
+        .select(.{})
+        .orderBy(.{ .created_at = .descending })
+        .all(request.repo);
 
     var root = try data.root(.object);
-    try root.put("blogs", try result.all(query));
+    try root.put("blogs", blogs);
 
     return request.render(.ok);
 }
