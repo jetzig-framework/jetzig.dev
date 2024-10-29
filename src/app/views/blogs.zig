@@ -18,11 +18,13 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 pub fn get(id: []const u8, request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     var root = try data.root(.object);
 
-    if (try jetzig.database.Query(.Blogs).find(id).execute(request.repo)) |blog| {
-        try root.put("blog", blog);
-    } else {
+    var blog = try jetzig.database.Query(.Blogs).find(id).execute(request.repo) orelse {
         return request.render(.not_found);
-    }
+    };
+
+    blog.content = try jetzig.markdown.render(request.allocator, blog.content, .{});
+    try root.put("blog", blog);
+
     return request.render(.ok);
 }
 

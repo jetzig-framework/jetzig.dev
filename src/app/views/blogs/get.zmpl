@@ -1,5 +1,6 @@
 <div>
-  <h1>{{.blog.title}}</h1>
+
+  @partial h1(.blog.title)
 
   <div>
     {{.blog.content}}

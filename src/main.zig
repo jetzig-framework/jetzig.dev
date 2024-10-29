@@ -21,7 +21,7 @@ pub const jetzig_options = struct {
         .password = null,
     };
 
-    pub const Schema = @import("app/database/Schema.zig");
+    pub const Schema = @import("Schema");
 
     pub const markdown_fragments = struct {
         pub const root = .{
