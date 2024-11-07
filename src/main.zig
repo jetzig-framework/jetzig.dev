@@ -7,6 +7,7 @@ const zmd = @import("zmd");
 pub const jetzig_options = struct {
     pub const middleware: []const type = &.{
         jetzig.middleware.HtmxMiddleware,
+        @import("app/middleware/Auth.zig"),
     };
 
     pub const force_development_email_delivery = false;

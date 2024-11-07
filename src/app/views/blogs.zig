@@ -1,6 +1,7 @@
 const std = @import("std");
 const jetzig = @import("jetzig");
 const Query = jetzig.database.Query;
+const auth = @import("../lib/auth.zig");
 
 pub const layout = "application";
 
@@ -20,10 +21,10 @@ pub fn get(id: []const u8, request: *jetzig.Request, data: *jetzig.Data) !jetzig
     var root = try data.root(.object);
 
     const query = Query(.Blog)
-        .find(id)
-        .include(.comments, .{ .order_by = .{ .created_at = .desc } });
+        .include(.comments, .{ .order_by = .{ .created_at = .desc } })
+        .find(id);
 
-    var blog = try query.execute(request.repo) orelse return request.render(.not_found);
+    var blog = try query.execute(request.repo) orelse return request.fail(.not_found);
 
     blog.content = try jetzig.markdown.render(request.allocator, blog.content, .{});
     try root.put("blog", blog);
@@ -38,11 +39,15 @@ pub fn new(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
 pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     _ = data;
+    const user = request.middleware(.auth).user;
+
+    if (user == null) return request.fail(.unauthorized);
+
     const params = try request.params();
     const title = params.get("title").?;
     const content = params.get("content").?;
     try jetzig.database.Query(.Blog)
-        .insert(.{ .title = title, .content = content })
+        .insert(.{ .title = title, .content = content, .author = user.?.email })
         .execute(request.repo);
     return request.redirect("/blogs", .moved_permanently);
 }

@@ -1,5 +1,6 @@
 <div>
   @partial h1(.blog.title)
+  @partial h2(.blog.author)
 
   <div>
     {{.blog.content}}
