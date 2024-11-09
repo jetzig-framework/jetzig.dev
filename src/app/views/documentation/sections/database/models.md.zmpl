@@ -18,7 +18,7 @@ Note that models should be named as singulars, i.e. `Comment` instead of `Commen
 
 All models default to `id` as their primary key (used for relations and `find` operations). This can be overridden with the `primary_key` option:
 
-```
+```zig
 pub const Blog = jetquery.Model(
     @This(),
     "blogs",
@@ -29,6 +29,7 @@ pub const Blog = jetquery.Model(
         .primary_key = "unique_id",
     },
 );
+```
 
 ### Relations
 
@@ -53,6 +54,8 @@ To override the default values, use the following syntax:
 
 ```zig
 jetquery.belongsTo(.Blog, .{ .primary_key = "blog_id", .foreign_key = "comment_id" })
+```
+```zig
 jetquery.hasMany(.Comment, .{ .primary_key = "commment_id", .foreign_key = "blog_id" })
 ```
 
