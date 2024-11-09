@@ -173,6 +173,32 @@
             </div>
           </li>
 
+          <li>
+            <div>
+              @partial documentation_header_expandable("Database")
+              <ul class="sub-menu px-2" id="sub-menu-email">
+                <li>
+                  @partial documentation_link("Introduction", "database/introduction")
+                </li>
+                <li>
+                  @partial documentation_link("Example", "database/example")
+                </li>
+                <li>
+                  @partial documentation_link("Configuration", "database/configuration")
+                </li>
+                <li>
+                  @partial documentation_link("Schema", "database/schema")
+                </li>
+                <li>
+                  @partial documentation_link("Models", "database/models")
+                </li>
+                <li>
+                  @partial documentation_link("Query Interface", "database/query_interface")
+                </li>
+              </ul>
+            </div>
+          </li>
+
         </ul>
       </li>
     </ul>

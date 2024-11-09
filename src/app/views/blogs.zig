@@ -5,10 +5,11 @@ const Query = jetzig.database.Query;
 pub const layout = "application";
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    const blogs = try Query(.Blog)
-        .select(.{})
-        .orderBy(.{ .created_at = .descending })
-        .all(request.repo);
+    const query = Query(.Blog)
+        .select(.{ .id, .title, .author, .created_at })
+        .orderBy(.{ .created_at = .descending });
+
+    const blogs = try request.repo.all(query);
 
     var root = try data.root(.object);
     try root.put("blogs", blogs);
