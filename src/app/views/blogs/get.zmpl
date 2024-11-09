@@ -1,16 +1,12 @@
 <div>
-  @partial h1(.blog.title)
-  @partial h2(.blog.author)
+  @partial blogs/title(.blog.title, .blog.author)
 
   <div>
-    {{.blog.content}}
+    {{zmpl.fmt.raw(zmpl.ref("blog.content"))}}
   </div>
 
   @for (.blog.comments) |comment| {
-    <div>
-      <span>Name: {{comment.name}}</span>
-      <div>Message: {{comment.content}}</div>
-    </div>
+    @partial blogs/comment(comment.name, comment.content)
   }
 
   <div class="grid grid-flow-dense grid-cols-4 gap-4">
