@@ -7,5 +7,5 @@ jetzig_downloads.json
 .bundle
 bundle.tar.gz
 node_modules/
-public/styles.css
 .zig-cache
+log/

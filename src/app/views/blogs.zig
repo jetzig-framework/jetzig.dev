@@ -1,7 +1,6 @@
 const std = @import("std");
 const jetzig = @import("jetzig");
 const Query = jetzig.database.Query;
-const auth = @import("../lib/auth.zig");
 
 pub const layout = "application";
 
@@ -64,6 +63,16 @@ test "get" {
     var app = try jetzig.testing.app(std.testing.allocator, @import("routes"));
     defer app.deinit();
 
-    const response = try app.request(.GET, "/blogs/example-id", .{});
+    try app.repo.begin();
+    defer app.repo.rollback() catch {};
+
+    try jetzig.database.Query(.Blog).insert(.{
+        .id = 1,
+        .title = "Test Blog",
+        .content = "Test Content",
+        .author = "Bob",
+    }).execute(app.repo);
+
+    const response = try app.request(.GET, "/blogs/1", .{});
     try response.expectStatus(.ok);
 }

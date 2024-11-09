@@ -58,7 +58,7 @@
 
   <div class="grid grid-cols-2 gap-4">
     <div>
-      @partial h4("<i class=\"fa-sharp fa-light fa-check fa-fw be-2\"></i> Completed")
+      @partial h4_icon("check", "Completed")
       <ul class="list-disc text-gray-500 ms-6 leading-8">
         <li>File system-based routing</li>
         <li>HTML and JSON responses</li>
@@ -84,23 +84,23 @@
         <li>General purpose cache</li>
         <li>Email delivery</li>
         <li>Background jobs</li>
+        <li>Custom (non-RESTful) routing</li>
+        <li>Database integration</li>
       </ul>
     </div>
 
     <div>
-      @partial h4("<i class=\"fa-sharp fa-light fa-clock fa-fw be-2\"></i> Pending")
+      @partial h4_icon("clock", "Pending")
       <ul class="list-disc text-gray-500 ms-6 leading-8">
         <li>Environment configurations (development, staging, production, etc.)</li>
         <li>Development mode debug page</li>
         <li>
           @partial link("Tailwind", "https://tailwindcss.com/", "_blank")
           middleware</li>
-        <li>Custom (non-RESTful) routing</li>
         <li>HTTP
           @partial code("keep-alive")
         </li>
         <li>Websockets</li>
-        <li>Database integration</li>
         <li>Email receipt (via AWS SES, Sendgrid, etc.)</li>
       </ul>
     </div>

@@ -46,6 +46,23 @@ test "post" {
     var app = try jetzig.testing.app(std.testing.allocator, @import("routes"));
     defer app.deinit();
 
-    const response = try app.request(.POST, "/auth", .{});
+    try app.repo.begin();
+    defer app.repo.rollback() catch {};
+
+    const hash = try jetzig.auth.hashPassword(std.testing.allocator, "password123");
+    defer std.testing.allocator.free(hash);
+
+    try app.repo.insert(
+        .User,
+        .{
+            .email = "bob@jetzig.dev",
+            .password_hash = hash,
+        },
+    );
+    const response = try app.request(
+        .POST,
+        "/auth",
+        .{ .params = .{ .email = "bob@jetzig.dev", .password = "password123" } },
+    );
     try response.expectStatus(.created);
 }

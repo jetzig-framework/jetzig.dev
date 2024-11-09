@@ -1,5 +1,5 @@
 @args title: []const u8, path: []const u8
-<a
+ <a
   href="#"
   hx-get="/documentation/sections/{{path}}"
   hx-target="#documentation-section"
