@@ -29,7 +29,7 @@ if (try request.repo.execute(query)) |blog| {
 ```
 
 ```
-error: no field named 'title' in struct ...
+error: no field named 'content' in struct ...
 ```
 
 ## Schema Definition

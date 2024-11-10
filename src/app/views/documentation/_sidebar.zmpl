@@ -196,6 +196,9 @@
                   @partial documentation_link("Query Interface", "database/query_interface")
                 </li>
                 <li>
+                  @partial documentation_link("Where Clauses", "database/where_clauses")
+                </li>
+                <li>
                   @partial documentation_link("Fetching Records", "database/fetching_records")
                 </li>
               </ul>

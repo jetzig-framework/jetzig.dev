@@ -46,7 +46,7 @@ If these values are not specified, the following rules are used to generate them
 
 * `primary_key`: Defaults to the primary key defined for the model (default: `id`).
 * `foreign_key` with `belongsTo`: Defaults to the **name of the relation** suffixed by `_id`.
-* `foreign_key` with `hasMany`: Defaults to the **name of the associated model** suffixed by `_id`.
+* `foreign_key` with `hasMany`: Defaults to the **name of the current model** suffixed by `_id`.
 
 Note that both columns do not need to be defined as primary or foreign keys in the database, any columns with compatible types can be used.
 
