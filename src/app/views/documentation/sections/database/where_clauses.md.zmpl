@@ -120,3 +120,6 @@ When used in conjunction with `include` or `join`, `WHERE` clause parameters for
 
 _JetQuery_ coerces types where possible. This allows common usage patterns like using a query parameter or URI segment as a numeric ID. In most use cases, parameters can be passed to `where()` without needing to manually coerce to the desired type.
 
+When working with custom types, implement `toJetQuery` to translate to the appropriate type. _JetQuery_ passes a single argument (the desired type to coerce to) to this function if it is defined.
+
+See _Zmpl_'s implementation of this function as reference: [https://github.com/jetzig-framework/zmpl/blob/main/src/zmpl/Data.zig#L999](https://github.com/jetzig-framework/zmpl/blob/main/src/zmpl/Data.zig#L999).

@@ -89,7 +89,7 @@ pub const Comment = jetquery.Model(
 );
 ```
 
-To make the schema generation process easier, _Jetzig_ provides a command line utility for reflecting the database schema automatically:
+To make the schema generation process easier, _Jetzig_ provides a command line utility for reflecting the database schema as needed:
 
 ```console
 $ jetzig database reflect

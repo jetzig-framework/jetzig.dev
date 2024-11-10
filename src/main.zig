@@ -50,7 +50,7 @@ pub const jetzig_options = struct {
             "</p>",
         };
         pub const code = .{
-            "<span class='whitespace-nowrap font-mono bg-sky-100 px-2 py-1 text-sky-800 rounded'>",
+            "<span class='whitespace-nowrap font-mono bg-sky-100 dark:bg-sky-900 px-2 py-1 text-sky-800 dark:text-sky-100 rounded'>",
             "</span>",
         };
 
@@ -66,7 +66,7 @@ pub const jetzig_options = struct {
 
         pub fn block(allocator: std.mem.Allocator, node: zmd.Node) ![]const u8 {
             return try std.fmt.allocPrint(allocator,
-                \\<pre class="font-mono mt-4 ms-3 sm:ms-0 bg-gray-900 p-2 sm:p-0 text-white"><code class="language-{?s}">{s}</code></pre>
+                \\<pre class="font-mono mt-4 ms-3 sm:ms-0 bg-gray-900 dark:bg-neutral-850 p-2 sm:p-0 text-white rounded"><code class="language-{?s}">{s}</code></pre>
             , .{ node.meta, node.content });
         }
 

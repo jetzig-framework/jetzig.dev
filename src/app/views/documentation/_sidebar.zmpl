@@ -2,7 +2,7 @@
   <button class="ms-2 text-right" id="toggle-sidebar-button"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button>
 </div>
 
-<div id="sidebar" class="hidden md:block flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+<div id="sidebar" class="hidden md:block flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 dark:border-gray:900 bg-white dark:bg-gray-800 dark:text-white px-6">
   <div class="flex h-16 shrink-0 items-center">
     <img class="h-8 w-auto" src="/jetzig.png" alt="Your Company">
   </div>
@@ -11,7 +11,6 @@
       <li>
         <ul role="list" class="-mx-2 space-y-1">
           <li>
-            <!-- Current: "bg-gray-50", Default: "hover:bg-gray-50" -->
             @partial documentation_header("Quickstart", "quickstart", false)
           </li>
 
@@ -199,7 +198,16 @@
                   @partial documentation_link("Where Clauses", "database/where_clauses")
                 </li>
                 <li>
-                  @partial documentation_link("Fetching Records", "database/fetching_records")
+                  @partial documentation_link("Executing Queries", "database/executing_queries")
+                </li>
+                <li>
+                  @partial documentation_link("Migrations", "database/migrations")
+                </li>
+                <li>
+                  @partial documentation_link("Command Line Tools", "database/command_line_tools")
+                </li>
+                <li>
+                  @partial documentation_link("Standalone Usage", "database/standalone_usage")
                 </li>
               </ul>
             </div>

@@ -4,7 +4,7 @@ This section provides an overview of the available member functions of a `Query`
 
 ## Execution
 
-In each case, the resulting query can be executed by calling `repo.execute(query)`.
+In each case, the resulting query can be executed by calling `request.repo.execute(query)`.
 
 For convenience, queries also implement `execute` and `all`, allowing a result to be fetched with a single statement. The following two examples are equivalent:
 
@@ -19,17 +19,7 @@ const blogs = try jetzig.database.Query(.Blog)
     .all(request.repo);
 ```
 
-The return type of `repo.execute` varies depending on the query type:
-
-* `insert`, `delete`, `deleteAll`, `update` return `!void`
-* `find`, `findBy` return `!?@TypeOf(query).ResultType`
-* `count` returns `i64`
-
-All other queries return a `Result` which can be iterated over using `result.next()`, or the entire result set can be fetched with `repo.all(query)` or `query.all(repo)`.
-
-`@TypeOf(query).ResultType` is a dynamic type comprising only the columns selected by the query and any included relations. `all` returns an array of results: `![]@TypeOf(query).ResultType`.
-
-See [Fetching Records](/documentation/sections/database/fetching_records) to see full examples of how each result type can be used.
+See [Executing Queries](/documentation/sections/database/executing_queries) to see full details regarding query result types and examples of how each result type can be used.
 
 ## Member Functions
 
@@ -50,7 +40,10 @@ jetzig.database.Query(.Blog).select(.{});
 Synthetic columns can also be selected using `jetquery.sql.column`:
 
 ```zig
-jetzig.database.Query(.Blog).select(.{ .id, jetquery.sql.column(i32, "100 + 50").as(.addition_result) });
+jetzig.database.Query(.Blog).select(.{
+	.id,
+    jetquery.sql.column(i32, "100 + 50").as(.addition_result),
+});
 ```
 
 Results from this query will have both `id` and `addition_result` attributes. Any `comptime` string can be passed to `jetquery.sql.column`. Synthetic columns must always be aliased using `as()` to provide a mapping on result values.
@@ -105,12 +98,12 @@ The result type from executing this query is an optional: if no records are foun
 
 Apply a `WHERE` clause to the query. There are many supported argument formats to allow complex `WHERE` clauses to be generated with (hopefully) intuitive syntax.
 
-For common patterns, queries typically look like this:
+See [Where Clauses](/documentation/sections/database/where_clauses) for a detailed overwiew of all supported features.
+
+For simple cases, a `WHERE` clause typically looks like this:
 ```zig
 jetzig.database.Query(.Cat).where(.{ .name = "Hercules" });
 ```
-
-However, _JetQuery_ provides a large number of options for generating where clauses. See [Where Clauses](/documentation/sections/database/where_clauses) for a detailed overview of all supported features.
 
 ### `include`
 
@@ -164,7 +157,7 @@ jetzig.databse.Query(.Blog).join(.inner, .comments);
 
 ### `distinct`
 
-Indicates that the specified columns should have a `DISTINCT` condition applied.
+Indicate that the specified columns should have a `DISTINCT` condition applied.
 
 ```zig
 jetzig.database.Query(.Blog).distinct(.{.title})
@@ -172,7 +165,7 @@ jetzig.database.Query(.Blog).distinct(.{.title})
 
 ### `count`
 
-Generates a `COUNT` query. The result type of executing a `count()` query is always `i64`.
+Generate a `COUNT` query. The result type of executing a `count()` query is always `i64`.
 
 Can be used in conjunction with `distinct`.
 
@@ -186,7 +179,7 @@ jetzig.database.Query(.Cat).distinct(.{.name}).count()
 
 ### `orderBy`
 
-Specifies an `ORDER BY` clause for the query. The following argument formats are supported:
+Specify an `ORDER BY` clause for the query. The following argument formats are supported:
 
 ```zig
 jetzig.database.Query(.Cat).orderBy(.name);
@@ -197,3 +190,60 @@ jetzig.database.Query(.Cat).join(.inner, .home).orderBy(.{ .name = .asc, .home =
 ```
 
 `.asc` and `.desc` are synonyms for `.ascending` and `.descending` respectively and can be used interchangeably.
+
+### `groupBy`
+
+Specify `GROUP BY` clause for the query.
+
+```zig
+jetzig.database.Query(.Dog).groupBy(.{.name});
+jetzig.database.Query(.Blog).include(.comments, .{}).groupBy(.{ .comments = .{.author});
+```
+
+### `having`
+
+Specify a `HAVING` clause for a `GROUP BY` query.
+
+The interface for `having` is identical to `where`. See [Where Clauses](/documentation/sections/database/where_clauses) for full specification.
+
+```zig
+jetzig.database.Query(.Cat).groupBy(.{.name}).having(.{ jetquery.sql.sum(.age), .gt, 10 });
+```
+
+### `insert`
+
+Generate an `INSERT` query.
+
+```zig
+jetzig.database.Query(.Cat).insert(.{ .name = "Hercules", .paws = 4 });
+```
+
+Alternatively, insert directly via the repository:
+
+```zig
+try request.repo.insert(.Cat, .{ .name = "Heracles", .paws = 4 });
+```
+
+### `update`
+
+Generate an `UPDATE` query.
+
+```zig
+jetzig.database.Query(.Dog).update(.{ .name = "Chompsky" }).where(.{ .name = "Chompy" });
+```
+
+Fails if no `WHERE` clause is applied.
+
+### `updateAll`
+
+Identical to `update` but allows updating the entire data set without a `WHERE` clause. This behaviour is intended to reduce the likelihood of accidentally updating all rows in a database.
+
+### `delete`
+
+```zig
+jetzig.database.Query(.Dog).delete().where(.{ .name = "Chompy" });
+```
+
+### `deleteAll`
+
+Identical to `delete` but allows deleting the entire data set without a `WHERE` clause. This behaviour is intended to reduce the likelihood of accidentally deleting all rows in a database.

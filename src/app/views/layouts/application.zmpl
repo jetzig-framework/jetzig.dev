@@ -27,12 +27,12 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
 
-  <body class="bg-gray-100">
+  <body class="bg-gray-100 dark:bg-gray-700">
     <header class="header">
       @partial layouts/application/nav
     </header>
 
-    <main class="container mx-auto mt-8 p-2 md:p-6 bg-white rounded-lg shadow-md">
+    <main class="container mx-auto mt-8 p-2 md:p-6 bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md">
       <div id="content">
         {{zmpl.content}}
       </div>
