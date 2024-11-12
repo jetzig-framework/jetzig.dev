@@ -13,6 +13,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
     var root = try data.root(.object);
     try root.put("blogs", blogs);
+    try root.put("is_signed_in", request.middleware(.auth).user != null);
 
     return request.render(.ok);
 }

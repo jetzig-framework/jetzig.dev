@@ -22,6 +22,15 @@ pub const jetzig_options = struct {
         .password = null,
     };
 
+    /// HTTP cookie configuration
+    pub const cookies: jetzig.http.Cookies.CookieOptions = .{
+        .domain = switch (jetzig.environment) {
+            .development, .testing => "localhost",
+            .production => "www.jetzig.dev",
+        },
+        .path = "/",
+    };
+
     pub const Schema = @import("Schema");
 
     pub const markdown_fragments = struct {

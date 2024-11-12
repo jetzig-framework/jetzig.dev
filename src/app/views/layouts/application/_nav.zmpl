@@ -23,6 +23,7 @@
     .{ .href = "/documentation.html", .title = "Documentation" },
     .{ .href = "/downloads.html", .title = "Downloads" },
     .{ .href = "/contact.html", .title = "Contact" },
+    .{ .href = "/blogs.html", .title = "Blog" },
   };
 }
 

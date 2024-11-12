@@ -95,6 +95,6 @@ To make the schema generation process easier, _Jetzig_ provides a command line u
 $ jetzig database reflect
 ```
 
-Run this command at any time to sync your `Schema` with your database. See the [Command Line](/documentation/sections/database/command_line) section for more information on available commands.
+Run this command at any time to sync your `Schema` with your database. See the [Command Line Tools](/documentation/sections/database/command_line_tools) section for more information on available commands.
 
 Any relations defined are transfered to the new `Schema` and the order of existing models is preserved so you can use this command liberally.

@@ -20,13 +20,13 @@
         @partial h3("Your email address")
 
         <div class="col-span-3 mt-3">
-          <input class="border p-1" type="text" name="from" placeholder="user@example.com" />
+          <input class="border dark:bg-gray-800 p-1" type="text" name="from" placeholder="user@example.com" />
         </div>
 
         @partial h3("Message")
 
         <div class="col-span-3 mt-3">
-          <textarea class="border p-1" cols="30" rows="10" name="message" placeholder="Enter message here"></textarea>
+          <textarea class="border p-1 dark:bg-gray-800" cols="30" rows="10" name="message" placeholder="Enter message here"></textarea>
         </div>
       </div>
 

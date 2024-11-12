@@ -84,6 +84,30 @@ const query = jetzig.database.Query(.Cat).delete().where(.{ .paws = 3 });
 try request.repo.execute(query);
 ```
 
+## Update
+
+Similar to `insert`, updating records can be achieved using the query generator:
+
+```zig
+const query = jetzig.database.Query(.Cat)
+    .update(.{ .name = "Hercules" })
+    .where(.{ .name = "Heracles" });
+try request.repo.execute(query);
+```
+
+If you have already fetched a record and want to modify it, updating can be achieved with `Repo.save()`:
+
+```zig
+const query = jetzig.database.Query(.Cat).findBy(.{ .name = "Hercules" });
+var maybe_cat = try repo.execute(query);
+if (maybe_cat) |*cat| {
+	cat.name = "Heracles";
+	try repo.save(cat);
+}
+```
+
+Note that the record's primary key **must** be selected in order to use `Repo.save()`. By default, all implicit `SELECT` queries include all columns.
+
 ## Relations
 
 ### hasMany

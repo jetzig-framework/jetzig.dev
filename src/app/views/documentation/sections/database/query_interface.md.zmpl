@@ -232,6 +232,20 @@ Generate an `UPDATE` query.
 jetzig.database.Query(.Dog).update(.{ .name = "Chompsky" }).where(.{ .name = "Chompy" });
 ```
 
+Alternatively, update a fetched record with `Repo.save()`:
+
+```zig
+const query = jetzig.database.Query(.Cat).findBy(.{ .name = "Hercules" });
+var maybe_cat = try repo.execute(query);
+if (maybe_cat) |*cat| {
+	cat.name = "Heracles";
+	try repo.save(cat);
+}
+```
+
+Note that the record's primary key **must** be selected in order to use `Repo.save()`. By default, all implicit `SELECT` queries include all columns.
+
+
 Fails if no `WHERE` clause is applied.
 
 ### `updateAll`
