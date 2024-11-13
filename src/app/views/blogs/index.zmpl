@@ -10,7 +10,7 @@
         @for (.blogs) |blog| {
             <tr>
                 <td>
-                    @partial blogs/link(blog)
+                    @partial blogs/link(blog.id, blog.title)
                 </td>
                 <td>
                     {{zmpl.fmt.datetime(blog.get("created_at"), "%Y-%m-%d")}}

@@ -3,9 +3,9 @@ pub const database = .{
         .adapter = .postgresql,
         .hostname = "localhost",
         .port = 5432,
-        .username = "ubuntu",
+        .username = "postgres",
         .password = "password",
-        .database = "jetzig_website",
+        .database = "jetzig_website_development",
     },
 
     .testing = .{
@@ -22,7 +22,5 @@ pub const database = .{
         .database = "jetzig_website",
         .hostname = "localhost",
         .port = 5432,
-        .username = "ubuntu",
-        .password = "password",
     },
 };
