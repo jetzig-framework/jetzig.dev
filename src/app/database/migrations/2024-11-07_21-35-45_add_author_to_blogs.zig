@@ -6,7 +6,7 @@ pub fn up(repo: anytype) !void {
     try repo.alterTable("blogs", .{
         .columns = .{
             .add = &.{
-                t.column("author", .string, .{ .not_null = true }),
+                t.column("author", .string, .{}),
             },
         },
     });

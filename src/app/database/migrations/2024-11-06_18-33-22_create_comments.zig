@@ -6,9 +6,9 @@ pub fn up(repo: anytype) !void {
     try repo.createTable(
         "comments",
         &.{
-            t.column("blog_id", .integer, .{ .not_null = true, .reference = .{ "blogs", "id" } }),
-            t.column("name", .string, .{ .not_null = true }),
-            t.column("content", .text, .{ .not_null = true }),
+            t.column("blog_id", .integer, .{ .reference = .{ "blogs", "id" } }),
+            t.column("name", .string, .{}),
+            t.column("content", .text, .{}),
             t.timestamps(.{}),
         },
         .{},
