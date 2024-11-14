@@ -41,8 +41,8 @@ pub fn up(repo: anytype) !void {
         "blogs",
         &.{
             t.primaryKey("id", .{}),
-            t.column("title", .string, .{ .not_null = true }),
-            t.column("content", .text, .{ .not_null = true }),
+            t.column("title", .string, .{ .unique = true }),
+            t.column("content", .text, .{}),
             t.timestamps(.{}),
         },
         .{},
@@ -87,12 +87,12 @@ pub fn column(
 
 ```zig
 pub const Options = struct {
-    not_null: bool = false,
-    index: bool = false,
-    index_name: ?[]const u8 = null,
-    unique: bool = false,
-    reference: ?Reference = null,
-    length: ?u16 = null,
+    optional: bool = false, // Specify a `NOT NULL` constraint when `false`
+    index: bool = false, // Create an index when `true`
+    index_name: ?[]const u8 = null, // Override auto-generated index name
+    unique: bool = false, // Apply a unique constraint when `true`
+    reference: ?Reference = null, // Create a foreign key, e.g. `.{"blogs", "id"}`
+    length: ?u16 = null, // Specify column length (string columns default to `255`)
 };
 ```
 

@@ -183,6 +183,9 @@
                   @partial documentation_link("Example", "database/example")
                 </li>
                 <li>
+                  @partial documentation_link("Tutorial", "database/tutorial")
+                </li>
+                <li>
                   @partial documentation_link("Configuration", "database/configuration")
                 </li>
                 <li>

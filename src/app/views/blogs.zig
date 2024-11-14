@@ -6,7 +6,7 @@ pub const layout = "application";
 
 pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     const query = Query(.Blog)
-        .select(.{ .id, .title, .author, .created_at })
+        .select(.{ .id, .title, .author, .content, .created_at })
         .orderBy(.{ .created_at = .descending });
 
     const blogs = try request.repo.all(query);
