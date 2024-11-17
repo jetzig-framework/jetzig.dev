@@ -3,16 +3,13 @@ const jetzig = @import("jetzig");
 
 pub const layout = "application";
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    var downloads = try data.array();
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    var downloads = try root.put("downloads", .array);
 
     try root.put("downloads", downloads);
 
-    for (try downloadsData(request.allocator, request.server.env.vars)) |download_datum| {
-        var download = try data.object();
-        try download.put("title", data.string(download_datum.title));
-        try download.put("path", data.string(download_datum.path));
+    for (try downloadsData(request.allocator, request.server.env.vars)) |download| {
         try downloads.append(download);
     }
 

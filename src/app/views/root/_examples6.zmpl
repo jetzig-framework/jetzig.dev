@@ -4,13 +4,13 @@
 @markdown MARKDOWN
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn index(request: *jetzig.Request) !jetzig.View {
     // Prepare a job using `src/app/jobs/example.zig`.
     var job = try request.job("example");
 
     // Add params to the job.
-    try job.params.put("foo", data.string("bar"));
-    try job.params.put("id", data.integer(std.crypto.random.int(u32)));
+    try job.params.put("foo", "bar");
+    try job.params.put("id", std.crypto.random.int(u32));
 
     // Schedule the job for background processing.
     try job.schedule();

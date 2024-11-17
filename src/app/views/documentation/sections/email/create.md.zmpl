@@ -53,7 +53,6 @@ If the `background` delivery strategy is used, this function is performed asynch
 pub fn deliver(
     allocator: std.mem.Allocator,
     mail: *jetzig.mail.MailParams,
-    data: *jetzig.data.Data,
     params: *jetzig.data.Value,
     env: jetzig.jobs.JobEnv,
 ) !void {
@@ -68,7 +67,6 @@ pub fn deliver(
 
 * `allocator`: Arena allocator for use during the mail delivery process.
 * `mail`: Mail parameters. Inspect or override any values assigned when the mail was created.
-* `data`: A `*jetzig.data.Data` assigned to the `deliver` function for generating new values, e.g. `data.string("foobar")`.
 * `params`: Params assigned to a mail (any values added to `data` in a request). Params can be modified before email delivery.
 * `env`: The current _Job_ environment. See _Creating Jobs_ for full documentation on this value.
 

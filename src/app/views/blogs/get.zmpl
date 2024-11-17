@@ -5,7 +5,7 @@
     {{zmpl.fmt.raw(zmpl.ref("blog.content"))}}
   </div>
 
-  @for (.blog.comments) |comment| {
+  @for ($.blog.comments) |comment| {
     @partial blogs/comment(comment.name, comment.content)
   }
 

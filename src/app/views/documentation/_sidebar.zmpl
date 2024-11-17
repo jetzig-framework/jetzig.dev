@@ -82,6 +82,12 @@
                 <li>
                   @partial documentation_link("Partials", "zmpl/partials")
                 </li>
+                <li>
+                  @partial documentation_link("Iteration", "zmpl/iteration")
+                </li>
+                <li>
+                  @partial documentation_link("If Statements", "zmpl/if_statements")
+                </li>
               </ul>
             </div>
           </li>

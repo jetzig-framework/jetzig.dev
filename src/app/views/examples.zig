@@ -1,11 +1,9 @@
 const std = @import("std");
 const jetzig = @import("jetzig");
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
+pub fn index(request: *jetzig.Request) !jetzig.View {
     return request.render(.ok);
 }
-
 
 test "index" {
     var app = try jetzig.testing.app(std.testing.allocator, @import("routes"));

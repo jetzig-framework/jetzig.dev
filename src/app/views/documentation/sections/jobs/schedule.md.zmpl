@@ -8,13 +8,13 @@ The argument passed to `request.job` is the filename of the _Job_ in `src/app/jo
 
 ## Assign job params
 
-The return value of `request.job()` provides a `params` field which is a `*jetzig.data.Value`, the same as the type returned by `data.object()` in a _View_ function.
+The return value of `request.job()` provides a `params` field which is a `*jetzig.data.Value`, the same as the type returned by `request.data(.object)` in a _View_ function.
 
 Use `job.params.put(key, value)` to set params exactly the same as setting _Zmpl_ template/_JSON_ response data values.
 
 ```zig
 var job = try request.job("example");
-try job.params.put("foo", data.string("bar");
+try job.params.put("foo", "bar");
 ```
 
 ## Schedule a job
@@ -31,13 +31,13 @@ try job.schedule();
 ## Example
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn index(request: *jetzig.Request) !jetzig.View {
     // Prepare a job using `src/app/jobs/example.zig`.
     var job = try request.job("example");
 
     // Add a param `foo` to the job.
-    try job.params.put("foo", data.string("bar"));
-    try job.params.put("id", data.integer(std.crypto.random.int(u32)));
+    try job.params.put("foo", "bar");
+    try job.params.put("id", std.crypto.random.int(u32));
 
     // Schedule the job for background processing.
     try job.schedule();
@@ -53,8 +53,8 @@ _Jetzig_'s _Data_ concept is used throughout the framework, giving convenient in
 The below example shows how a _View_ function can parse request params and use the same values seamlessly in response data and _Job_ params:
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
     const params = try request.params();
     const message = params.get("message");

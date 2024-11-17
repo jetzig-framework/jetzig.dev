@@ -1,8 +1,10 @@
 # Value
 
-The generic data type used throughout _Jetzig_ is `*jetzig.data.Value`.
+The generic data type used throughout _Jetzig_ is `*jetzig.data.Value`. This type is designed to work with a large number of inputs, providing a balance between flexibility, ease of use, and standaridization for multiple consumers (for example, `*jetzig.data.Value` can always be serialized to _JSON_.
 
-This type is used for _Zmpl_ template values, _JSON_ output, request parameters, and will soon be used for cache and background jobs.
+A call to `request.data(.object)` or `request.data(.array)` returns a `*jetzig.data.Value`.
+
+This type is used for _Zmpl_ template values, _JSON_ output, request parameters, cache, store, and background jobs.
 
 ```zig
 pub const Value = union(enum) {
@@ -12,7 +14,8 @@ pub const Value = union(enum) {
     integer: Integer,
     boolean: Boolean,
     string: String,
-    Null: NullType,
+    datetime: jetzig.DateTime,
+    null: NullType,
 
     // ...
 };
@@ -30,21 +33,19 @@ pub fn get(self: *Value, key: []const u8) ?*Value
 
 Returns a `*Value` when the given key is found in a `Value.object`. If `Value.object` is not active, returns `null`. If key is not found, returns `null`.
 
-If key is present but was set to `null`, `Value.Null` is returned. This allows you to switch on the returned value and identify keys that exist but have no value.
+If key is present but was set to `null`, `Value.null` is returned. This allows you to switch on the returned value and identify keys that exist but have no value.
 
 For example, `request.params()` returns a `*Value` and allows detection of query params that have no value, or a _JSON_ request body with `null` values:
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
-
+pub fn index(request: *jetzig.Request) !jetzig.View {
     const params = try request.params();
 
     if (params.get("redirect")) |location| {
         switch (location.*) {
-            // Value is `.Null` when param is empty, e.g.:
+            // Value is `.null` when param is empty, e.g.:
             // `http://localhost:8080/redirect?redirect`
-            .Null => return request.redirect("http://www.example.com/", .moved_permanently),
+            .null => return request.redirect("http://www.example.com/", .moved_permanently),
 
             // Value is `.string` when param is present, e.g.:
             // `http://localhost:8080/redirect?redirect=https://jetzig.dev/`
@@ -61,14 +62,14 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 ### `getT`
 
 ```zig
-pub fn getT(self: *Data, comptime T: ValueType, key: []const u8) ?switch (T) {
+pub fn getT(self: *Value, comptime T: ValueType, key: []const u8) ?switch (T) {
     .object => *Object,
     .array => *Array,
     .string => []const u8,
     .float => f128,
     .integer => i128,
     .boolean => bool,
-    .Null => null,
+    .null => null,
 }
 ```
 
@@ -79,9 +80,7 @@ Returns the underlying type of the `*Value` matching the given key. Returns `nul
 Note that the following example is not identical to the example given for `get` as it does not detect when the `redirect` query param is provided but with no value. If this functionality is required, `get` must be used with `switch`.
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
-
+pub fn index(request: *jetzig.Request) !jetzig.View {
     const params = try request.params();
 
     if (params.getT(.string, "redirect")) |location| {
@@ -91,6 +90,14 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     }
 }
 ```
+
+### `coerce`
+
+```zig
+pub fn coerce(self: Value, T: type) ZmplError!ComptimeErasedType(T)
+```
+
+Attempt to coerce a value to any other type. Return an error if no value is provided.
 
 ### `chain`
 
@@ -105,10 +112,14 @@ Returns `null` if `Value.object` is not active or if any of the provided keys ar
 ### `put`
 
 ```zig
-pub fn put(self: *Value, key: []const u8, value: ?*Value) !void
+pub fn put(self: *Value, key: []const u8, value: ?*Value) !PutAppend(@TypeOf(value))
 ```
 
 Put a given `*Value` into a `Value.object` under the fieldname `key`.
+
+The special values `.object` and `.array` return a new object or array inserted into the object at the given key.
+
+All other values return `void`.
 
 ### `append`
 
@@ -116,7 +127,27 @@ Put a given `*Value` into a `Value.object` under the fieldname `key`.
 pub fn append(self: *Value, value: ?*Value) !void
 ```
 
-Appends a `*Value` to a `Value.array`. When `value` is `null`, `Value.Null` is appended.
+Appends a `*Value` to a `Value.array`. When `value` is `null`, `Value.null` is appended.
+
+The special values `.object` and `.array` return a new object or array appended to the array.
+
+All other values return `void`.
+
+### `remove`
+
+```zig
+pub fn remove(self: *Value, key: []const u8) bool
+```
+
+Remove the value found at `key` from the current object tree. Return `true` if key was found, otherwise `false`.
+
+### `pop`
+
+```zig
+pub fn pop(self: *Value) ?*Value
+```
+
+Pop the last value from an array. If the array is empty, return `null`.
 
 ### `count`
 

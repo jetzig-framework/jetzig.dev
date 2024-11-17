@@ -10,7 +10,7 @@ Email delivery in _Jetzig_ consists of invoking `request.mail()` with two argume
 Invoke `request.mail` in a _View_ function to create an email, then call `mail.deliver` and specify a delivery strategy:
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn index(request: *jetzig.Request) !jetzig.View {
     const mail = request.mail("welcome", .{ .to = &.{"user@example.com"} });
     try mail.deliver(.background, .{});
 
@@ -30,8 +30,8 @@ Two delivery strategies are available:
 The template data for an email is identical to the response data for a request. Calling `request.mail` automatically transfers the current response data to the _Mailer_.
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
     try root.put("message", "Welcome to Jetzig!");
 
@@ -59,8 +59,8 @@ pub fn deliver(
     env: jetzig.jobs.JobEnv,
 ) !void {
     _ = allocator;
-    try params.put("message", data.string("Message override"));
-    try params.put("token", data.string("secret-token"));
+    try params.put("message", "Message override");
+    try params.put("token", "secret-token");
 
     try env.logger.INFO("Delivering email with subject: '{?s}'", .{mail.get(.subject)});
 }

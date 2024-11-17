@@ -3,13 +3,11 @@ const jetzig = @import("jetzig");
 
 pub const layout = "application";
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
-
+pub fn index(request: *jetzig.Request) !jetzig.View {
     return request.render(.ok);
 }
 
-pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn post(request: *jetzig.Request) !jetzig.View {
     const params = try request.params();
 
     const email = params.getT(.string, "email") orelse {
@@ -28,7 +26,7 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
         return request.fail(.unauthorized);
     }
 
-    var root = try data.root(.object);
+    var root = try request.data(.object);
     try root.put("email", user.email);
 
     return request.render(.created);

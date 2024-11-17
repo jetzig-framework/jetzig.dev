@@ -94,7 +94,7 @@ We will use the extended options for the migration generator to specify our tabl
 jetzig generate migration create_blogs table:blogs column:title:string column:content:text:optional
 ```
 
-Open the new migration created it `src/app/database/migrations/`. It should contain this content:
+Open the new migration created in `src/app/database/migrations/`. It should contain this content:
 
 ```zig
 const std = @import("std");
@@ -186,33 +186,31 @@ Open the newly-created file `src/app/views/blogs.zig` and edit the `index`, `get
 ```zig
 # src/app/views/blogs.zig
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn index(request: *jetzig.Request) !jetzig.View {
     const query = jetzig.database.Query(.Blog).orderBy(.{ .created_at = .desc });
     const blogs = try request.repo.all(query);
 
-    var root = try data.root(.object);
+    var root = try request.data(.object);
     try root.put("blogs", blogs);
 
     return request.render(.ok);
 }
 
-pub fn get(id: []const u8, request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn get(id: []const u8, request: *jetzig.Request) !jetzig.View {
     const query = jetzig.database.Query(.Blog).find(id);
     const blog = try request.repo.execute(query) orelse return request.fail(.not_found);
 
-    var root = try data.root(.object);
+    var root = try request.data(.object);
     try root.put("blog", blog);
 
     return request.render(.ok);
 }
 
-pub fn new(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
+pub fn new(request: *jetzig.Request) !jetzig.View {
     return request.render(.ok);
 }
 
-pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
+pub fn post(request: *jetzig.Request) !jetzig.View {
     const params = try request.params();
 
     const title = params.getT(.string, "title") orelse {

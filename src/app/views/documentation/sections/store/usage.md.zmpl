@@ -5,9 +5,9 @@ Use the store from any _View_ function with `request.store`. The store is global
 ## Basic Example
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    try request.store.put("foo", data.string("bar"));
-    try request.store.put("number", data.integer(1234));
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    try request.store.put("foo", "bar");
+    try request.store.put("number", 1234);
 
     const params = try request.params();
 

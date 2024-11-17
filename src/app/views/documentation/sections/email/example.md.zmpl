@@ -7,9 +7,9 @@ Use `jetzig generate view` and `jetzig generate mailer` to generate the majority
 ## View
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    try root.put("message", data.string("Welcome to Jetzig!"));
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    try root.put("message", "Welcome to Jetzig!");
 
     const params = try request.params();
 
@@ -53,7 +53,7 @@ pub fn deliver(
         mail.subject = "DEBUG EMAIL";
     }
 
-    try params.put("token", data.string("secret-token"));
+    try params.put("token", "secret-token");
     try env.logger.INFO("Delivering email with subject: '{?s}'", .{mail.get(.subject)});
 }
 ```

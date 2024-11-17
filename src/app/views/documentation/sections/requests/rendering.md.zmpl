@@ -4,7 +4,15 @@ _Jetzig_ renders a response when a call to `request.render` is made.
 
 The `render` function receives an _HTTP_ response code as its only argument and the result of this function must be returned immediately (double renders will cause an error).
 
-For example `return request.render(.ok);` will render a `200 OK` response.
+For example `return request.render(.ok)` will render a `200 OK` response.
+
+To abort a request at any time, use `request.fail`:
+
+```zig
+return request.fail(.not_found);
+```
+
+This prevents any templates from rendering and immediately returns an error page.
 
 ## HTML
 
@@ -39,11 +47,9 @@ const jetzig = @import("jetzig");
 
 pub const layout = "application";
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    var downloads = try data.array();
-
-    try root.put("downloads", downloads);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    var downloads = try root.put("downloads", .array);
 
     const file = try std.fs.openFileAbsolute("/var/www/jetzig_downloads.json", .{});
     defer file.close();
@@ -51,10 +57,7 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
     const downloads_data = try std.json.parseFromSlice([]Download, request.allocator, json, .{});
 
     for (downloads_data.value) |download_datum| {
-        var download = try data.object();
-        try download.put("title", data.string(download_datum.title));
-        try download.put("path", data.string(download_datum.path));
-        try downloads.append(download);
+        try downloads.append(download_datum);
     }
 
     return request.render(.ok);

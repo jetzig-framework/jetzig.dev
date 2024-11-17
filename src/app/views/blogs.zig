@@ -4,22 +4,22 @@ const Query = jetzig.database.Query;
 
 pub const layout = "application";
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn index(request: *jetzig.Request) !jetzig.View {
     const query = Query(.Blog)
         .select(.{ .id, .title, .author, .content, .created_at })
         .orderBy(.{ .created_at = .descending });
 
     const blogs = try request.repo.all(query);
 
-    var root = try data.root(.object);
+    var root = try request.data(.object);
     try root.put("blogs", blogs);
     try root.put("is_signed_in", request.middleware(.auth).user != null);
 
     return request.render(.ok);
 }
 
-pub fn get(id: []const u8, request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn get(id: []const u8, request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
     const query = Query(.Blog)
         .include(.comments, .{ .order_by = .{ .created_at = .desc } })
@@ -33,22 +33,22 @@ pub fn get(id: []const u8, request: *jetzig.Request, data: *jetzig.Data) !jetzig
     return request.render(.ok);
 }
 
-pub fn new(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
+pub fn new(request: *jetzig.Request) !jetzig.View {
     return request.render(.ok);
 }
 
-pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
+pub fn post(request: *jetzig.Request) !jetzig.View {
     const user = request.middleware(.auth).user;
 
     if (user == null) return request.fail(.unauthorized);
 
-    const params = try request.params();
-    const title = params.get("title").?;
-    const content = params.get("content").?;
+    const Params = struct { title: []const u8, content: []const u8 };
+    const params = try request.expectParams(Params) orelse {
+        return request.fail(.unprocessable_entity);
+    };
+
     try jetzig.database.Query(.Blog)
-        .insert(.{ .title = title, .content = content, .author = user.?.email })
+        .insert(.{ .title = params.title, .content = params.content, .author = user.?.email })
         .execute(request.repo);
     return request.redirect("/blogs", .moved_permanently);
 }

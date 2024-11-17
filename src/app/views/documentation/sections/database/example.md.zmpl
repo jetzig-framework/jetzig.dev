@@ -8,14 +8,14 @@ The example below is taken from the [Blog](/blogs) section of this website. You 
 const jetzig = @import("jetzig");
 const Query = jetzig.database.Query;
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
+pub fn index(request: *jetzig.Request) !jetzig.View {
     const query = Query(.Blog)
         .select(.{ .id, .title, .author, .created_at })
         .orderBy(.{ .created_at = .descending });
 
     const blogs = try request.repo.all(query);
 
-    var root = try data.root(.object);
+    var root = try request.data(.object);
     try root.put("blogs", blogs);
 
     return request.render(.ok);

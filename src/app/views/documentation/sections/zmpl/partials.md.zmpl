@@ -50,12 +50,11 @@ Note that `*ZmplValue` coerces to a string and can be used just like any data re
 If we have the following view function:
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    var user = try data.object();
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    var user = try root.put("user", .object);
 
-    try user.put("email", data.string("user\@example.com"));
-    try root.put("user", user);
+    try user.put("email", "user\@example.com");
 
     return request.render(.ok);
 }

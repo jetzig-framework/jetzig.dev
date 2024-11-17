@@ -7,31 +7,24 @@ See each section in the _Data_ documentation to learn more about how each `Value
 ```zig
 // src/app/views/example.zig
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
-    var user = try data.object();
-    try root.put("user", user);
+    var user = try root.put("user", .object);
+    var user_profile = try user.put("profile", .object);
 
-    var user_profile = try data.object();
-    try user.put("profile", user_profile);
+    try user.put("email", "user@example.com");
+    try user.put("name", "Example User");
 
-    try user.put("email", data.string("user@example.com"));
-    try user.put("name", data.string("Example User"));
+    var pets = try user_profile.put("pets", .array);
 
-    var pets = try data.array();
-    try user_profile.put("pets", pets);
+    var cat = try pets.append(.object);
+    try cat.put("name", "Garfield");
+    try cat.put("animal", "cat");
 
-    var cat = try data.object();
-    try cat.put("name", data.string("Garfield"));
-    try cat.put("animal", data.string("cat"));
-
-    var dog = try data.object();
-    try dog.put("name", data.string("Pluto"));
-    try dog.put("animal", data.string("Dog"));
-
-    try pets.append(cat);
-    try pets.append(dog);
+    var dog = try pets.append(.object);
+    try dog.put("name", "Pluto");
+    try dog.put("animal", "Dog");
 
     return request.render(.ok);
 }

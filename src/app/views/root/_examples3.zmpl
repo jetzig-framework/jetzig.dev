@@ -4,13 +4,13 @@
 @markdown MARKDOWN
 
 ```zig
-pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var object = try data.root(.object);
+pub fn post(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
     const params = try request.params();
 
     // Set mail template params.
-    try object.put("from", params.get("from"));
-    try object.put("message", params.get("message"));
+    try root.put("from", params.get("from"));
+    try root.put("message", params.get("message"));
 
     // Create email.
     const mail = request.mail("contact", .{ .to = &.{"hello@jetzig.dev"} });

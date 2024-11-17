@@ -35,16 +35,16 @@ For example:
 ```zig
 const jetzig = \@import("jetzig");
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    try root.put("message", data.string("Welcome to Jetzig!"));
-    try root.put("iguana_count", data.integer(100_000));
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    try root.put("message", "Welcome to Jetzig!");
+    try root.put("iguana_count", 100_000);
 
     return request.render(.ok);
 }
 ```
 
-**Important**: The first call to either `data.object()` **or** `data.array()` sets the _root_ value. All data references use this value as their starting point.
+**Important**: The first call to `request.data()` sets the _root_ value. All data references use this value as their starting point. You should only call this once per request unless you specifically wish to re-initialize the root value.
 
 These values can now be accessed in a _Zmpl_ template:
 
@@ -58,13 +58,11 @@ This syntax can also be used to access nested keys:
 ```zig
 const jetzig = @import("jetzig");
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
-    var iguana = try data.object();
-    try iguana.put("name", data.string("Ziggy"));
-
-    try root.put("iguana", iguana);
+    var iguana = try root.put(.object);
+    try iguana.put("name", "Ziggy");
 
     return request.render(.ok);
 }
