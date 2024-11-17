@@ -21,6 +21,28 @@ The recommended way to access request params is with `request.expectParams()`.
 
 After a call to `request.expectParams()`, `request.paramsInfo()` can be called to inspect the specific state of each parameter.
 
+### Optionals
+
+If a field in `T` is an optional type (e.g. `?u32`) then it is considered as not required by `expectParams()`. If a param for an optional field is not present then it is assigned to `null`.
+
+Default values can also be provided, in which case that value will only be used when the param is not present.
+
+```zig
+pub const Params = struct {
+	foo: ?[]const u8, // defaults to `null`
+	bar: ?[]const u8 = "hello", // defaults to "hello"
+	baz: []const u8, // required, no values returned if missing
+};
+```
+
+### Type Coercion
+
+Since query params are always strings, _Jetzig_ tries to coerce all params to their target type. The string `"123"` will coerce to a `u16` but `"abc"` will not.
+
+If type coercion fails for any param then `expectParams()` returns `null`. Information about the failures is available with `request.paramsInfo()` (see below).
+
+### Example
+
 The following example from this website's [blogs/comments.zig](https://github.com/jetzig-framework/jetzig.dev/blob/main/src/app/views/blogs/comments.zig) view shows how parameters from a form are translated and used to insert a record into the database:
 
 ```zig
@@ -47,6 +69,49 @@ pub fn post(request: *jetzig.Request) !jetzig.View {
         .moved_permanently,
     );
 }
+```
+
+## `paramsInfo()`
+
+After a call to `request.expectParams(T)`, `request.paramsInfo()` returns a hash-like value providing access to information about each param.
+
+The `ParamsInfo` type implements `format()` to assist with debugging:
+
+```zig
+std.debug.print("{?}\n", .{try request.paramsInfo()});
+```
+
+### Detailed Example
+
+```zig
+const T = struct {
+	// ...
+};
+
+const params = try request.expectParams(T) orelse {
+	if (try request.paramsInfo()) |info| {
+		if (info.get("foo")) |param| {
+			switch (param) {
+				.present => |capture| {
+					// `capture` is the original param value - this param was
+					// parsed correctly into the target type.
+				},
+				.blank => {
+					// This param was not present. A param is marked as `blank`
+					// whether it was optional or not therefore does not imply failure.
+				},
+				.failed => |capture| {
+					// This param errored while attempting to coerce to the target type.
+                   	// `capture` is a `ParamError` with these fields:
+                    // * `err`: The error that occurred during type coercion.
+					// * `value`: The original param value (identical to the
+                    //            capture payload for `present`).
+				},
+			}
+		}
+	}
+};
+
 ```
 
 ## Accessing Params Directly
