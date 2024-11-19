@@ -23,7 +23,7 @@ _Zmpl_ replaces comparison operators (`==`, `!=`, `<`, `<=`, `>`, `>=`) with cal
 
 See the example below taken from _Zmpl_'s test suite to see how it works:
 
-```zig
+```zmpl
 \@if ($.foo.bar == 999 and $.foo.baz >= 5 and $.foo.qux.quux < 3)
     unexpected here
 \@else if ($.foo.bar == 1 and $.foo.baz == 3 and $.foo.qux.quux == 4)

@@ -7,7 +7,7 @@ pub fn up(repo: anytype) !void {
         "users",
         &.{
             t.primaryKey("id", .{}),
-            t.column("email", .string, .{}),
+            t.column("email", .string, .{ .unique = true, .index = true }),
             t.column("password_hash", .string, .{}),
             t.timestamps(.{}),
         },
