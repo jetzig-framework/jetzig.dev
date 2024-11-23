@@ -24,8 +24,8 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
 
 We can now iterate over the results of our query in a _Zmpl_ template:
 
-```html
-<!-- src/app/views/blogs/index.zmpl -->
+```zmpl
+\@// src/app/views/blogs/index.zmpl
 
 <div>
   \@partial link("New Blog Post", "/blogs/new")

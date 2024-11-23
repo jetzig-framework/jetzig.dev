@@ -6,6 +6,7 @@ const zmd = @import("zmd");
 
 pub const jetzig_options = struct {
     pub const middleware: []const type = &.{
+        jetzig.middleware.AntiCsrfMiddleware,
         jetzig.middleware.AuthMiddleware,
         jetzig.middleware.HtmxMiddleware,
     };

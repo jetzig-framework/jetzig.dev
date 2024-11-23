@@ -64,7 +64,7 @@ Following the `welcome` naming convention, this template should be named `src/ap
 
 Note that both `.message` (assigned in the _View_ function) and `.token` (assigned in the `deliver` function) are available:
 
-```html
+```zmpl
 <div>Hello! Here is an important message: {\{.message}}</div>
 
 <div>Your secret token is: {\{.token}}</div>
@@ -76,7 +76,7 @@ To ensure that your email is readable by all email clients, the _Text_ part of t
 
 The _Text_ template should be named `src/app/mailers/welcome/text.zmpl`.
 
-```
+```zmpl
 Hello! Here is an important message: {\{.message}}
 
 Your secret token is: {\{.token}}

@@ -15,7 +15,7 @@ The below example shows the four forms of partial invocation:
 1. Partial with keyword arguments - keyword arguments can be passed in any order
 1. Partial with slots
 
-```zig
+```zmpl
 <div>
   \@partial example_partial
 
@@ -39,7 +39,7 @@ The `\@args` pragma is simply a comma-separated list of argument names and types
 
 Arguments can be any type, including the provided `*ZmplValue` type which allows passing in values from the _Zmpl_ `data` object.
 
-```zig
+```zmpl
 \@args email: *ZmplValue, subject: []const u8
 
 <a href="mailto:{\{email}}?subject={\{subject}}">Send an email to {\{email}}</a>
@@ -62,7 +62,7 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
 
 Assuming the above partial is named `src/app/views/_email_link.zmpl`, it can be invoked from the template using the following:
 
-```zig
+```zmpl
 <div>
   \@partial email_link(email: .user.email, subject: "Hello!");
 </div>
@@ -72,7 +72,7 @@ Assuming the above partial is named `src/app/views/_email_link.zmpl`, it can be 
 
 Default values for arguments can be specified using the `=` operator:
 
-```zig
+```zmpl
 \@args href: []const u8, title: []const u8, target: []const u8 = "_self"
 
 <a href="{\{href}}" target="{\{target}}">{\{title}}</a>
@@ -80,16 +80,16 @@ Default values for arguments can be specified using the `=` operator:
 
 If the above partial is named `_link.zmpl` it can now be invoked with any of the following:
 
-```zig
+```zmpl
 \@partial link("https://jetzig.dev/", "Jetzig Website")
 ```
-```zig
+```zmpl
 \@partial link("https://jetzig.dev/", "Jetzig Website", "_blank")
 ```
-```zig
+```zmpl
 \@partial link(title: "Jetzig Website", href: "https://jetzig.dev/")
 ```
-```zig
+```zmpl
 \@partial link(title: "Jetzig Website", href: "https://jetzig.dev/", target: "_blank")
 ```
 
@@ -103,7 +103,7 @@ To use the slots passed to a partial, iterate over the `slots` array using a `fo
 
 ### Template
 
-```zig
+```zmpl
 <div>
   \@partial partial_with_slots {
     <span>slot 1</span>
@@ -115,7 +115,7 @@ To use the slots passed to a partial, iterate over the `slots` array using a `fo
 
 ### Partial
 
-```zig
+```zmpl
 <div>
   <h2>A partial with slots</h2>
 
@@ -132,7 +132,7 @@ The `slots` value is just a `[][]const u8`, and _Zmpl_ is capable of rendering t
 
 If you don't need to wrap each slot in any extra markup, render the whole array directly using this short-hand:
 
-```zig
+```zmpl
 <div>
   <h2>A partial with slots</h2>
 

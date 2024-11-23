@@ -8,7 +8,7 @@ Iteration is always available by entering `@zig` mode inside a template, but _Zm
 
 For example:
 
-```html
+```zmpl
 <div>
 	\@for ($.blog.comments) |comment| {
 		\@partial blogs/comment(comment)
@@ -22,7 +22,7 @@ This saves manually looking up and unpacking the value reference `$.blog.comment
 
 If you simply want to get a data ref as an interable value inside a `@zig` block, use `zmpl.coerceArray`:
 
-```html
+```zmpl
 \@zig {
     const array = try zmpl.coerceArray(".blog.comments");
     for (array) |item| {

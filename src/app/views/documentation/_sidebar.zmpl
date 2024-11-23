@@ -17,7 +17,6 @@
           <li>
             <div>
               @partial documentation_header_expandable("Requests")
-              <!-- Expandable link section, show/hide based on state. -->
               <ul class="sub-menu px-2" id="sub-menu-requests">
                 <li>
                   @partial documentation_link("Introduction", "requests/introduction")
@@ -40,6 +39,12 @@
                 <li>
                   @partial documentation_link("Layouts", "requests/layouts")
                 </li>
+                <li>
+                  @partial documentation_link("Actions", "requests/actions")
+                </li>
+                <li>
+                  @partial documentation_link("Anti-CSRF", "requests/anti_csrf")
+                </li>
               </ul>
             </div>
           </li>
@@ -47,7 +52,6 @@
           <li>
             <div>
               @partial documentation_header_expandable("Data")
-              <!-- Expandable link section, show/hide based on state. -->
               <ul class="sub-menu px-2" id="sub-menu-data">
                 <li>
                   @partial documentation_link("Introduction", "data/introduction")
@@ -68,7 +72,6 @@
           <li>
             <div>
               @partial documentation_header_expandable("Zmpl Templates")
-              <!-- Expandable link section, show/hide based on state. -->
               <ul class="sub-menu px-2" id="sub-menu-zmpl">
                 <li>
                   @partial documentation_link("Introduction" , "zmpl/introduction")
@@ -87,6 +90,35 @@
                 </li>
                 <li>
                   @partial documentation_link("If Statements", "zmpl/if_statements")
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              @partial documentation_header_expandable("Middleware")
+              <ul class="sub-menu px-2" id="sub-menu-middleware">
+                <li>
+                  @partial documentation_link("Introduction" , "middleware/introduction")
+                </li>
+                <li>
+                  @partial documentation_link("Configuration" , "middleware/configuration")
+                </li>
+                <li>
+                  @partial documentation_link("Specification" , "middleware/specification")
+                </li>
+                <li>
+                  @partial documentation_link("HtmxMiddleware" , "middleware/htmx")
+                </li>
+                <li>
+                  @partial documentation_link("AuthMiddleware" , "middleware/auth")
+                </li>
+                <li>
+                  @partial documentation_link("AntiCsrfMiddleware" , "middleware/anti_csrf")
+                </li>
+                <li>
+                  @partial documentation_link("CompressionMiddleware" , "middleware/compression")
                 </li>
               </ul>
             </div>
@@ -181,7 +213,7 @@
           <li>
             <div>
               @partial documentation_header_expandable("Database")
-              <ul class="sub-menu px-2" id="sub-menu-email">
+              <ul class="sub-menu px-2" id="sub-menu-database">
                 <li>
                   @partial documentation_link("Introduction", "database/introduction")
                 </li>

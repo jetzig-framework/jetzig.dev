@@ -32,7 +32,7 @@ pub fn post(request: *jetzig.Request) !jetzig.View {
 
 ### `index.zmpl`
 
-```html
+```zmpl
 <div>
   <span>Cached value: {\{.message}}</span>
 </div>
@@ -40,7 +40,7 @@ pub fn post(request: *jetzig.Request) !jetzig.View {
 
 ### `post.zmpl`
 
-```html
+```zmpl
 <div>
   <span>Value "{\{.message}}" added to cache</span>
 </div>

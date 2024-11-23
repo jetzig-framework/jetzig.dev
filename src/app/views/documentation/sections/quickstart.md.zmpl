@@ -30,7 +30,7 @@ $ jetzig server
 
 Use the command line tool again to generate a view for the `/iguanas` endpoint with an index function:
 
-```zig
+```console
 $ jetzig generate view iguanas index
 ```
 
@@ -73,8 +73,8 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
 
 You can now use _Zmpl_'s data lookup syntax to access these values in your template:
 
-```html
-// src/app/views/iguanas/index.zmpl
+```zmpl
+\@// src/app/views/iguanas/index.zmpl
 <div>Message: {\{.message}}</div>
 <div>{\{.iguana_count}} iguanas!</div>
 ```

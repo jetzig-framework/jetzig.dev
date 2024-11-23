@@ -4,7 +4,7 @@ _Zmpl_ uses a simple but powerful system for references (also known as "template
 
 References are delimited by `{\{` and `}}`:
 
-```zig
+```zmpl
 \@zig {
     const foobar = "hello";
 }
@@ -48,7 +48,7 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
 
 These values can now be accessed in a _Zmpl_ template:
 
-```zig
+```zmpl
 <div>{\{.message}}</div>
 <div>We found {\{.iguana_count}} iguanas!</div>
 ```
@@ -70,7 +70,7 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
 
 The iguana's name can now be accessed in a template:
 
-```zig
+```zmpl
 <div>The iguana is named {\{.iguana.name}}</div>
 ```
 
@@ -82,7 +82,7 @@ All references that do not begin with `.` are assumed to reference a value in th
 1. By _Jettzig_ (e.g. the `jetzig_view` and `jetzig_action` constants available in every template).
 1. Arguments passed to a partial.
 
-```zig
+```zmpl
 \@zig {
     const red = "#ff0000";
 }
@@ -93,6 +93,6 @@ All references that do not begin with `.` are assumed to reference a value in th
 
 If needed, arbitrary _Zig_ code can be used inside a reference. Note that this code **must** evaluate to a `[]const u8`:
 
-```zig
+```zmpl
 <div>{\{if (true) "foo" else "bar"}}</div>
 ```

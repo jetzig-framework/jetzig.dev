@@ -55,7 +55,7 @@ pub fn get(self: *Data, key: []const u8) ?*Value
 
 If the _Root Value_ is `object`, retrieves the `*Value` for the given key, if present. Otherwise, returns `null`.
 
-```zig
+```zmpl
 \@zig {
     if (zmpl.get("foobar")) |foobar| {
         {\{foobar}}
@@ -64,7 +64,7 @@ If the _Root Value_ is `object`, retrieves the `*Value` for the given key, if pr
 ```
 
 In most cases, the _Reference_ syntax provides a more convenient way of rendering values:
-```zig
+```zmpl
 {\{.foobar}}
 ```
 
@@ -80,7 +80,7 @@ Pass an array of `[]const u8` to recursively fetch values from a nested `Value`.
 
 Returns `null` if `Value` is not `object` or if any of the provided keys are not found.
 
-```zig
+```zmpl
 \@zig {
     if (zmpl.chain(&[_][]const u8{ "user", "profile", "height" })) |height| {
           <div>User is {\{height}}cm tall.</div>
@@ -112,7 +112,7 @@ const Item = struct {
 
 Use `zmpl.items(.array)` or `zmpl.items(.object)` in a _Zmpl_ template to iterate over the _Root Value_ with a `for` loop:
 
-```zig
+```zmpl
 \@zig {
   <ul>
   for (zmpl.items(.array)) |value| {
@@ -122,7 +122,7 @@ Use `zmpl.items(.array)` or `zmpl.items(.object)` in a _Zmpl_ template to iterat
 }
 ```
 
-```zig
+```zmpl
 \@zig {
   <ul>
   for (zmpl.items(.object)) |item| {

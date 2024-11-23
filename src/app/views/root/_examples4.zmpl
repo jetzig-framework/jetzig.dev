@@ -3,7 +3,7 @@
 
 @markdown MARKDOWN
 
-```zig
+```zmpl
 <html>
   <body>
     \@partial header

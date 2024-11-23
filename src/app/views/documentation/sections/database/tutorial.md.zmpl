@@ -233,7 +233,7 @@ Now open the templates that were created by the view generator:
 
 #### `src/app/views/blogs/index.zmpl`
 
-```html
+```zmpl
 <div>
   @\for (.blogs) |blog| {
     <a href="/blogs/{\{blog.id}}">{\{blog.title}}</a>
@@ -247,7 +247,7 @@ Now open the templates that were created by the view generator:
 
 #### `src/app/views/blogs/new.zmpl`
 
-```html
+```zmpl
 <div>
   <form action="/blogs" method="POST">
     <label>Title</label>
@@ -263,7 +263,7 @@ Now open the templates that were created by the view generator:
 
 #### `src/app/views/blogs/get.zmpl`
 
-```html
+```zmpl
 <div>
   <h1>{\{.blog.title}}</h1>
   <div>{\{.blog.content}}</div>
