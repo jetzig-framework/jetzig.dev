@@ -7,11 +7,11 @@
     <h4 class="text-jetzig-orange">{{zmpl.fmt.datetime(zmpl.ref("blog.created_at"), "%Y-%m-%d")}}</h4>
 
     @if ($.blog.created_at != $.blog.updated_at)
-    (Edited: {{zmpl.fmt.datetime(zmpl.ref("blog.updated_at"), "%Y-%m-%d %H:%M:%S")}})
+    (Edited: {{zmpl.fmt.datetime(zmpl.ref("blog.updated_at"), "%Y-%m-%d %H:%M")}})
     @end
 
     <div>
-    {{zmpl.fmt.raw(zmpl.ref("blog.content"))}}
+        {{zmpl.fmt.raw(zmpl.ref("blog.content"))}}
     </div>
 
     <hr/>
@@ -28,6 +28,7 @@
         @partial blogs/comment(comment.name, comment.content)
     }
 
+    @partial h3("Leave a Comment")
     <form action="/blogs/comments" method="POST">
         <div class="grid grid-flow-dense w-100 md:w-1/2 mt-4 grid-cols-1 gap-4">
             {{context.authenticityFormElement()}}
