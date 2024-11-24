@@ -76,7 +76,7 @@ pub const jetzig_options = struct {
 
         pub fn block(allocator: std.mem.Allocator, node: zmd.Node) ![]const u8 {
             return try std.fmt.allocPrint(allocator,
-                \\<pre class="font-mono mt-4 ms-3 sm:ms-0 bg-gray-900 dark:bg-neutral-850 p-2 sm:p-0 text-white rounded"><code class="language-{?s}">{s}</code></pre>
+                \\<pre class="font-mono mt-4 ms-3 sm:ms-0 bg-gray-900 dark:bg-neutral-850 p-2 text-white rounded"><code class="language-{?s}">{s}</code></pre>
             , .{ node.meta, node.content });
         }
 

@@ -44,11 +44,11 @@ An authenticity token is generated when one of the _Zmpl_ template helpers are i
 Two helpers are available in templates:
 
 * `context.authenticityToken()`: Returns only the token and nothing else.
-* `context.authenticityFormField()`: Returns a hidden `<input />` field that can be included directly in a form.
+* `context.authenticityFormElement()`: Returns a hidden `<input />` field that can be included directly in a form.
 
 ```zmpl
 <form action="/contact" method="POST">
-    {\{context.authenticityFormField()}}
+    {\{context.authenticityFormElement()}}
     <input name="email" type="text" />
     <textarea name="message"></textarea>
     <input type="submit" />

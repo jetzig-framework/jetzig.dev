@@ -620,6 +620,10 @@ video {
   grid-column: span 3 / span 3;
 }
 
+.m-2 {
+  margin: 0.5rem;
+}
+
 .m-5 {
   margin: 1.25rem;
 }
@@ -1178,10 +1182,6 @@ video {
     margin-inline-start: 0px;
   }
 
-  .sm\:p-0 {
-    padding: 0px;
-  }
-
   .sm\:p-1 {
     padding: 0.25rem;
   }
@@ -1211,6 +1211,10 @@ video {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:w-1\/2 {
+    width: 50%;
   }
 
   .md\:w-3\/4 {

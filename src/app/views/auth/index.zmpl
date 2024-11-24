@@ -1,5 +1,6 @@
 <div>
   <form action="/auth" method="POST">
+    {{context.authenticityFormElement()}}
     <label>Email</label>
     <input class="dark:bg-gray-800" type="email" name="email" />
 

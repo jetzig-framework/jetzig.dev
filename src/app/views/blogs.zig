@@ -18,16 +18,56 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
     return request.render(.ok);
 }
 
+pub fn edit(id: []const u8, request: *jetzig.Request) !jetzig.View {
+    const blog = try Query(.Blog).find(id).execute(request.repo) orelse {
+        return request.fail(.not_found);
+    };
+
+    var root = try request.data(.object);
+    try root.put("blog", blog);
+    return request.render(.ok);
+}
+
+pub fn patch(id: []const u8, request: *jetzig.Request) !jetzig.View {
+    std.debug.print("here\n", .{});
+    const Params = struct { title: []const u8, content: []const u8 };
+    const params = try request.expectParams(Params) orelse {
+        return request.fail(.unprocessable_entity);
+    };
+
+    var blog = try Query(.Blog).find(id).execute(request.repo) orelse {
+        return request.fail(.not_found);
+    };
+
+    blog.content = params.content;
+    blog.title = params.title;
+
+    try request.repo.save(blog);
+
+    return request.redirect(
+        try request.joinPath(.{ "/blogs", id }),
+        .moved_permanently,
+    );
+}
+
 pub fn get(id: []const u8, request: *jetzig.Request) !jetzig.View {
     var root = try request.data(.object);
+
+    try root.put("is_signed_in", request.middleware(.auth).user != null);
 
     const query = Query(.Blog)
         .include(.comments, .{ .order_by = .{ .created_at = .desc } })
         .find(id);
 
-    var blog = try query.execute(request.repo) orelse return request.fail(.not_found);
+    var blog = try query.execute(request.repo) orelse {
+        return request.fail(.not_found);
+    };
 
-    blog.content = try jetzig.markdown.render(request.allocator, blog.content, .{});
+    blog.content = try jetzig.markdown.render(
+        request.allocator,
+        blog.content,
+        .{},
+    );
     try root.put("blog", blog);
 
     return request.render(.ok);
@@ -48,8 +88,12 @@ pub fn post(request: *jetzig.Request) !jetzig.View {
     };
 
     try jetzig.database.Query(.Blog)
-        .insert(.{ .title = params.title, .content = params.content, .author = user.?.email })
-        .execute(request.repo);
+        .insert(.{
+        .title = params.title,
+        .content = params.content,
+        .author = user.?.email,
+    }).execute(request.repo);
+
     return request.redirect("/blogs", .moved_permanently);
 }
 
