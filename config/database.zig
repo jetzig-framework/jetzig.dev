@@ -4,7 +4,7 @@ pub const database = .{
         .hostname = "localhost",
         .port = 5432,
         .username = "postgres",
-        .password = "Z123fire",
+        .password = "password",
         .database = "jetzig_website_development",
         .pool_size = 8,
     },
@@ -14,7 +14,7 @@ pub const database = .{
         .hostname = "localhost",
         .port = 5432,
         .username = "postgres",
-        .password = "Z123fire",
+        .password = "password",
         .database = "jetzig_website_testing",
     },
 

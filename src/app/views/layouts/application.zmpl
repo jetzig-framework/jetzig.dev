@@ -7,9 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.7.0/dist/htmx.js"></script>
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/prism.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
     <script src="https://kit.fontawesome.com/030a384a33.js" crossorigin="anonymous"></script>
     <script src="/prism.js" data-manual></script>
     <script
