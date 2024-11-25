@@ -1,18 +1,46 @@
-<div class="mt-4">
-  <form action="/blogs/{{$.blog.id}}/_PATCH" method="POST">
-    {{context.authenticityFormElement()}}
-    <div class="grid grid-flow-dense grid-cols-4 gap-4">
-      <label>Title</label>
-      <div class="col-span-3 mt-3">
-        <input class="border p-1 dark:bg-gray-800" type="text" name="title" value="{{$.blog.title}}" />
+<div class="max-w-5xl mx-auto px-4 py-8">
+  @partial h2("Edit Blog Post")
+
+  <div class="mt-8">
+    <form action="/blogs/{{$.blog.id}}/_PATCH" method="POST">
+      {{context.authenticityFormElement()}}
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="md:col-span-1">
+          <label for="title" class="block text-gray-700 font-medium">Title</label>
+        </div>
+        <div class="md:col-span-3">
+          <input
+            id="title"
+            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+            type="text"
+            name="title"
+            value="{{$.blog.title}}"
+            required
+          />
+        </div>
+
+        <div class="md:col-span-1">
+          <label for="content" class="block text-gray-700 font-medium">Content</label>
+        </div>
+        <div class="md:col-span-3">
+          <textarea
+            id="content"
+            class="w-full border border-gray-300 rounded-md p-2 h-64 resize-none focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+            name="content"
+            placeholder="Enter content here"
+            required
+          >{{$.blog.content}}</textarea>
+        </div>
       </div>
 
-      <label>Content</label>
-      <div class="col-span-3 mt-3">
-        <textarea class="border p-1 dark:bg-gray-800" cols="30" rows="10" name="content" placeholder="Enter content here">{{$.blog.content}}</textarea>
+      <div class="mt-6 text-right">
+        <button
+          type="submit"
+          class="inline-block bg-[#f7931e] text-white py-2 px-6 rounded-md hover:bg-[#e6831b] focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+        >
+          Submit
+        </button>
       </div>
-    </div>
-
-    <input class="border py-1 px-2 bg-[#f7931e] text-white dark:bg-gray-800" type="submit" value="Submit" />
-  </form>
+    </form>
+  </div>
 </div>
