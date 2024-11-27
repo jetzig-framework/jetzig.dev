@@ -11,23 +11,23 @@
   @end
 
   <table class="min-w-full divide-y divide-gray-200 mt-6">
-    <thead class="bg-gray-50">
+    <thead class="bg-gray-50 dark:bg-gray-700">
       <tr>
         <th
           scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-100 uppercase tracking-wider"
         >
           Title
         </th>
         <th
           scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-100 uppercase tracking-wider"
         >
           Date
         </th>
         <th
           scope="col"
-          class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-100 uppercase tracking-wider"
         >
           Author
         </th>
@@ -36,7 +36,7 @@
         @end
       </tr>
     </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
       @for (.blogs) |blog| {
         <tr>
           <td class="px-6 py-4 whitespace-nowrap">
