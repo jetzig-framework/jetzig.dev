@@ -6,7 +6,7 @@ pub const database = .{
         .username = "postgres",
         .password = "password",
         .database = "jetzig_website_development",
-        .pool_size = 8,
+        .pool_size = 16,
     },
 
     .testing = .{
