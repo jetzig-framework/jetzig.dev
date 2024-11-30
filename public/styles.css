@@ -851,6 +851,10 @@ video {
   align-items: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -913,6 +917,14 @@ video {
   border-color: rgb(229 231 235 / var(--tw-divide-opacity));
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
 .overflow-y-auto {
   overflow-y: auto;
 }
@@ -949,6 +961,10 @@ video {
 
 .border-r {
   border-right-width: 1px;
+}
+
+.border-t {
+  border-top-width: 1px;
 }
 
 .border-gray-100 {
