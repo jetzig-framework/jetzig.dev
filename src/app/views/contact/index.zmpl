@@ -28,7 +28,7 @@
         </div>
         <div class="md:col-span-3">
           <input
-            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+            class="w-full border border-gray-300 rounded-md p-2 dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
             type="email"
             name="from"
             placeholder="user@example.com"
@@ -41,7 +41,7 @@
         </div>
         <div class="md:col-span-3">
           <textarea
-            class="w-full border border-gray-300 rounded-md p-2 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+            class="w-full border border-gray-300 rounded-md p-2 h-32 resize-none dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
             name="message"
             placeholder="Enter your message here"
             required

@@ -40,14 +40,14 @@
         {{context.authenticityFormElement()}}
         <input type="hidden" name="blog_id" value="{{.blog.id}}" />
         <input
-          class="border border-gray-300 rounded-md p-2 dark:bg-gray-800 w-full focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+          class="border border-gray-300 rounded-md p-2 dark:bg-gray-900 w-full focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
           type="text"
           name="name"
           placeholder="Your name here..."
           required
         />
         <textarea
-          class="border border-gray-300 rounded-md p-2 dark:bg-gray-800 w-full h-32 resize-none focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+          class="border border-gray-300 rounded-md p-2 dark:bg-gray-900 w-full h-32 resize-none focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
           name="content"
           placeholder="Enter comment here..."
           required
