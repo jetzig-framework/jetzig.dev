@@ -6,7 +6,7 @@
       {{context.authenticityFormElement()}}
       <div class="grid grid-cols-1 gap-6">
         <div>
-          <label for="email" class="block text-gray-700 font-medium">Email</label>
+          <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium">Email</label>
           <input
             id="email"
             class="w-full border border-gray-300 rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#f7931e] dark:bg-gray-800 dark:border-gray-700 dark:text-white"
@@ -17,7 +17,7 @@
         </div>
 
         <div>
-          <label for="password" class="block text-gray-700 font-medium">Password</label>
+          <label for="password" class="block text-gray-700 dark:text-gray-300 font-medium">Password</label>
           <input
             id="password"
             class="w-full border border-gray-300 rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-[#f7931e] dark:bg-gray-800 dark:border-gray-700 dark:text-white"

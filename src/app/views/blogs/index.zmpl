@@ -16,7 +16,7 @@
   <!-- Mobile Card Layout -->
   <div class="mt-6 md:hidden space-y-4">
     @for (.blogs) |blog| {
-      <div class="bg-white dark:bg-gray-800 shadow-md rounded-md overflow-hidden">
+      <div class="bg-white dark:bg-gray-700 shadow-md rounded-md overflow-hidden">
         <div class="p-4">
           <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
             @partial blogs/link(blog.id, blog.title, false)
@@ -37,23 +37,23 @@
   <!-- Desktop Table Layout -->
   <div class="hidden md:block overflow-x-auto">
     <table class="min-w-full divide-y divide-gray-200 mt-6">
-      <thead class="bg-gray-50">
+      <thead class="bg-gray-50 dark:bg-gray-700">
         <tr>
           <th
             scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-100 uppercase tracking-wider"
           >
             Title
           </th>
           <th
             scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-100 uppercase tracking-wider"
           >
             Date
           </th>
           <th
             scope="col"
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-100 uppercase tracking-wider"
           >
             Author
           </th>
@@ -62,7 +62,7 @@
           @end
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
+      <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
         @for (.blogs) |blog| {
           <tr>
             <td class="px-6 py-4 whitespace-nowrap">
