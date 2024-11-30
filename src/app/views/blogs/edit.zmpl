@@ -11,7 +11,7 @@
         <div class="md:col-span-3">
           <input
             id="title"
-            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+            class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 dark:bg-gray-900 focus:ring-[#f7931e]"
             type="text"
             name="title"
             value="{{$.blog.title}}"
@@ -25,7 +25,7 @@
         <div class="md:col-span-3">
           <textarea
             id="content"
-            class="w-full border border-gray-300 rounded-md p-2 h-64 resize-none focus:outline-none focus:ring-2 focus:ring-[#f7931e]"
+            class="w-full border border-gray-300 rounded-md p-2 h-64 resize-none focus:outline-none focus:ring-2 dark:bg-gray-900 focus:ring-[#f7931e]"
             name="content"
             placeholder="Enter content here"
             required

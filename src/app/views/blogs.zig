@@ -29,7 +29,6 @@ pub fn edit(id: []const u8, request: *jetzig.Request) !jetzig.View {
 }
 
 pub fn patch(id: []const u8, request: *jetzig.Request) !jetzig.View {
-    std.debug.print("here\n", .{});
     const Params = struct { title: []const u8, content: []const u8 };
     const params = try request.expectParams(Params) orelse {
         return request.fail(.unprocessable_entity);
