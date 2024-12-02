@@ -58,18 +58,26 @@ pub fn get(id: []const u8, request: *jetzig.Request) !jetzig.View {
         .include(.comments, .{ .order_by = .{ .created_at = .desc } })
         .find(id);
 
-    var blog = try query.execute(request.repo) orelse {
-        return request.fail(.not_found);
-    };
+    const cache_key = try request.joinPath(.{ "blog", id });
 
-    blog.content = try jetzig.markdown.render(
-        request.allocator,
-        blog.content,
-        .{},
-    );
-    try root.put("blog", blog);
+    if (try request.cache.get(cache_key)) |blog| {
+        try root.put("blog", blog);
+        return request.render(.ok);
+    } else {
+        var blog = try query.execute(request.repo) orelse {
+            return request.fail(.not_found);
+        };
 
-    return request.render(.ok);
+        blog.content = try jetzig.markdown.render(
+            request.allocator,
+            blog.content,
+            .{},
+        );
+        try root.put("blog", blog);
+        try request.cache.putExpire(cache_key, blog, 10);
+
+        return request.render(.ok);
+    }
 }
 
 pub fn new(request: *jetzig.Request) !jetzig.View {

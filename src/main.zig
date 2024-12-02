@@ -12,6 +12,7 @@ pub const jetzig_options = struct {
     };
 
     pub const force_development_email_delivery = false;
+    pub const max_bytes_request_body: usize = 256 * 1024;
 
     pub const job_worker_threads: usize = 4;
 
@@ -33,6 +34,13 @@ pub const jetzig_options = struct {
     };
 
     pub const Schema = @import("Schema");
+
+    pub const cache: jetzig.kv.Store.Options = .{
+        .backend = switch (jetzig.environment) {
+            .testing => .valkey,
+            .development, .production => .valkey,
+        },
+    };
 
     pub const markdown_fragments = struct {
         pub const root = .{

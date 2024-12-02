@@ -22,6 +22,7 @@
 
   <div class="mt-8">
     <form action="/contact" method="POST">
+      {{context.authenticityFormElement()}}
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div class="md:col-span-1">
           @partial h3("Your Email Address")
