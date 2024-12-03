@@ -40,6 +40,7 @@ pub const jetzig_options = struct {
             .testing => .valkey,
             .development, .production => .valkey,
         },
+        .valkey_options = .{ .pool_size = 16 },
     };
 
     pub const markdown_fragments = struct {
