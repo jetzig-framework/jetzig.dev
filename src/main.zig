@@ -1,7 +1,7 @@
 const std = @import("std");
 
 pub const jetzig = @import("jetzig");
-pub const routes = @import("routes");
+pub const routes = @import("./routes.zig");
 const zmd = @import("zmd");
 
 pub const jetzig_options = struct {

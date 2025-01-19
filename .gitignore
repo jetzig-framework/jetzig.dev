@@ -9,3 +9,6 @@ bundle.tar.gz
 node_modules/
 public/styles.css
 .zig-cache/
+.env
+.env.production
+log/*.log

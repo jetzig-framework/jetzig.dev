@@ -1,11 +1,13 @@
 <div class="mt-2 text-center sm:p-2">
   <img src="/jetzig.png" alt="Jetzig Logo" class="mt-2 h-24 mx-auto">
+  IT IS WORKING
+  {{$.hello}}
   @partial h1("Jetzig Web Framework", "text-center")
   <p class="text-gray-500 mt-2 text-lg">
     <i>Jetzig</i> is an
     @partial link("MIT", "https://github.com/jetzig-framework/jetzig/blob/main/LICENSE")
     licensed web framework written in
-    @partial link("Zig", "https://ziglang.org/")
+    @partial link("hutnhnotuhnouhhoeu", "https://ziglang.org/")
   </p>
   <p class="text-gray-500 text-2xl mt-1">
     <i class="fa-brands fa-linux fa-fw fa-lg"></i>

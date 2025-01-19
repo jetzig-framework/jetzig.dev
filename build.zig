@@ -10,6 +10,7 @@ pub fn build(b: *std.Build) !void {
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
+        // .use_llvm = true,
     });
 
     try jetzig.jetzigInit(b, exe, .{ .zmpl_version = .v2 });
