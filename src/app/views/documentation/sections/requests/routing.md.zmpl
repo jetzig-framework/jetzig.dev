@@ -26,7 +26,7 @@ When _Jetzig_ receives a request with a path that matches a route, one of the ab
 
 Apart from `index` and `post`, all functions receive the final component of the path (`example-resource-id`) as their first argument (`[]const u8`).
 
-All functions always receive receive `*jetzig.Request` and `*jetzig.Data` arguments and return `!jetzig.View` (see _Rendering_ for more information).
+All functions always receive a `*jetzig.Request` argument and return `!jetzig.View` (see _Rendering_ for more information).
 
 ## Public Content
 
