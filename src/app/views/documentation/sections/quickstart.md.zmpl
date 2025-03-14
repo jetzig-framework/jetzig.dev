@@ -77,7 +77,7 @@ You can now use _Zmpl_'s data lookup syntax to access these values in your templ
 <div>{\{.iguana_count}} iguanas!</div>
 ```
 
-Browse to [http://localhost:8080/iguanas.html](http://localhost:8080/iguanas.html) to see your rendered _HTML_ (the `.html` exnension is optional) or visit [http://localhost:8080/iguanas.json](http://localhost:8080/iguanas.json) to see the raw _JSON_ data.
+Browse to [http://localhost:8080/iguanas.html](http://localhost:8080/iguanas.html) to see your rendered _HTML_ (the `.html` extension is optional) or visit [http://localhost:8080/iguanas.json](http://localhost:8080/iguanas.json) to see the raw _JSON_ data.
 
 ## Generate a layout
 
