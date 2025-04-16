@@ -10,3 +10,4 @@ node_modules/
 .zig-cache
 log/
 .env
+.env.*

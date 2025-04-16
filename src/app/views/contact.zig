@@ -17,7 +17,7 @@ pub fn post(request: *jetzig.Request) !jetzig.View {
     try object.put("from", params.from);
     try object.put("message", params.message);
 
-    const mail = request.mail("contact", .{ .to = &.{"hello@jetzig.dev"} });
+    const mail = request.mail("contact", .{ .to = &.{.{ .email = "hello@jetzig.dev" }} });
     try mail.deliver(.background, .{});
 
     return request.render(.created);
