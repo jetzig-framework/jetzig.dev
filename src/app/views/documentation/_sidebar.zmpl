@@ -2,7 +2,7 @@
   <button class="ms-2 text-right" id="toggle-sidebar-button"><i class="fa-solid fa-ellipsis-stroke-vertical"></i></button>
 </div>
 
-<div id="sidebar" class="hidden md:block flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+<div id="sidebar" class="hidden md:block flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 dark:border-gray:900 bg-white dark:bg-gray-800 dark:text-white px-6">
   <div class="flex h-16 shrink-0 items-center">
     <img class="h-8 w-auto" src="/jetzig.png" alt="Your Company">
   </div>
@@ -11,14 +11,12 @@
       <li>
         <ul role="list" class="-mx-2 space-y-1">
           <li>
-            <!-- Current: "bg-gray-50", Default: "hover:bg-gray-50" -->
             @partial documentation_header("Quickstart", "quickstart", false)
           </li>
 
           <li>
             <div>
               @partial documentation_header_expandable("Requests")
-              <!-- Expandable link section, show/hide based on state. -->
               <ul class="sub-menu px-2" id="sub-menu-requests">
                 <li>
                   @partial documentation_link("Introduction", "requests/introduction")
@@ -41,6 +39,12 @@
                 <li>
                   @partial documentation_link("Layouts", "requests/layouts")
                 </li>
+                <li>
+                  @partial documentation_link("Actions", "requests/actions")
+                </li>
+                <li>
+                  @partial documentation_link("Anti-CSRF", "requests/anti_csrf")
+                </li>
               </ul>
             </div>
           </li>
@@ -48,7 +52,6 @@
           <li>
             <div>
               @partial documentation_header_expandable("Data")
-              <!-- Expandable link section, show/hide based on state. -->
               <ul class="sub-menu px-2" id="sub-menu-data">
                 <li>
                   @partial documentation_link("Introduction", "data/introduction")
@@ -69,7 +72,6 @@
           <li>
             <div>
               @partial documentation_header_expandable("Zmpl Templates")
-              <!-- Expandable link section, show/hide based on state. -->
               <ul class="sub-menu px-2" id="sub-menu-zmpl">
                 <li>
                   @partial documentation_link("Introduction" , "zmpl/introduction")
@@ -82,6 +84,41 @@
                 </li>
                 <li>
                   @partial documentation_link("Partials", "zmpl/partials")
+                </li>
+                <li>
+                  @partial documentation_link("Iteration", "zmpl/iteration")
+                </li>
+                <li>
+                  @partial documentation_link("If Statements", "zmpl/if_statements")
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              @partial documentation_header_expandable("Middleware")
+              <ul class="sub-menu px-2" id="sub-menu-middleware">
+                <li>
+                  @partial documentation_link("Introduction" , "middleware/introduction")
+                </li>
+                <li>
+                  @partial documentation_link("Configuration" , "middleware/configuration")
+                </li>
+                <li>
+                  @partial documentation_link("Specification" , "middleware/specification")
+                </li>
+                <li>
+                  @partial documentation_link("HtmxMiddleware" , "middleware/htmx")
+                </li>
+                <li>
+                  @partial documentation_link("AuthMiddleware" , "middleware/auth")
+                </li>
+                <li>
+                  @partial documentation_link("AntiCsrfMiddleware" , "middleware/anti_csrf")
+                </li>
+                <li>
+                  @partial documentation_link("CompressionMiddleware" , "middleware/compression")
                 </li>
               </ul>
             </div>
@@ -168,6 +205,50 @@
                 </li>
                 <li>
                   @partial documentation_link("Example", "email/example")
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              @partial documentation_header_expandable("Database")
+              <ul class="sub-menu px-2" id="sub-menu-database">
+                <li>
+                  @partial documentation_link("Introduction", "database/introduction")
+                </li>
+                <li>
+                  @partial documentation_link("Example", "database/example")
+                </li>
+                <li>
+                  @partial documentation_link("Tutorial", "database/tutorial")
+                </li>
+                <li>
+                  @partial documentation_link("Configuration", "database/configuration")
+                </li>
+                <li>
+                  @partial documentation_link("Schema", "database/schema")
+                </li>
+                <li>
+                  @partial documentation_link("Models", "database/models")
+                </li>
+                <li>
+                  @partial documentation_link("Query Interface", "database/query_interface")
+                </li>
+                <li>
+                  @partial documentation_link("Where Clauses", "database/where_clauses")
+                </li>
+                <li>
+                  @partial documentation_link("Executing Queries", "database/executing_queries")
+                </li>
+                <li>
+                  @partial documentation_link("Migrations", "database/migrations")
+                </li>
+                <li>
+                  @partial documentation_link("Command Line Tools", "database/command_line_tools")
+                </li>
+                <li>
+                  @partial documentation_link("Standalone Usage", "database/standalone_usage")
                 </li>
               </ul>
             </div>

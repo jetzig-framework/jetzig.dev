@@ -10,8 +10,7 @@ A request can only call `redirect` or `render` once. Multiple calls to either wi
 ## Example
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-  _ = data;
+pub fn index(request: *jetzig.Request) !jetzig.View {
   return request.redirect("http://www.example.com/", .moved_permanently);
 }
 ```

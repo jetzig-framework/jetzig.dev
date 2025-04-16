@@ -21,7 +21,7 @@ _Jetzig_ will now render the rendered view function's content inside the `exampl
 
 Here's an example of that layout might look like:
 
-```html
+```zmpl
 <html>
   <head>
     <script>

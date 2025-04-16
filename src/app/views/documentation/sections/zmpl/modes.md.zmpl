@@ -14,7 +14,7 @@ If no mode is specified, the default mode is `html`.
 
 The example below shows how to switch between different modes:
 
-```zig
+```zmpl
 <div>Some regular HTML</div>
 
 \@zig {
@@ -46,7 +46,7 @@ There are two key differences between regular _HTML_ and `html` mode:
 1. References are supported anywhere.
 1. Mode switches can be used to change the current mode.
 
-```zig
+```zmpl
 \@html {
     <div>Some HTML</div>
     \@zig {
@@ -76,7 +76,7 @@ Some convenience values are available in all _Zmpl_ templates which can be used 
 * `jetzig_action` - the current action, e.g. `index`, `get`, `post`, `put`, `patch`, `delete`.
 * `zmpl` - the `data` argument used in views. This can be used to operate on data values directly, e.g. iterating over an array.
 
-```zig
+```zmpl
 \@zig {
     const foo = "hello";
     <span>{\{foo}}</span>
@@ -100,7 +100,7 @@ Some convenience values are available in all _Zmpl_ templates which can be used 
 
 Just like `html` mode, [references](/documentation/sections/zmpl/references) are fully supported. Internally, all content in `markdown` mode is parsed directly to _Zmpl_'s `html` parser.
 
-```zig
+```zmpl
 \@markdown {
     Some _very convenient_ markdown.
 
@@ -179,7 +179,7 @@ This allows you to use braces within your _HTML_ content without being concerned
 
 The following example taken from the _Zmpl_ test suite shows how custom delimiters can be used to avoid scenarios where braces are not suitable as delimiters:
 
-```zig
+```zmpl
 \@markdown MARKDOWN
   # Built-in markdown support
 

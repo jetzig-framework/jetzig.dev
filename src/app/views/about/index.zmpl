@@ -58,7 +58,7 @@
 
   <div class="grid grid-cols-2 gap-4">
     <div>
-      @partial h4("<i class=\"fa-sharp fa-light fa-check fa-fw be-2\"></i> Completed")
+      @partial h4_icon("check", "Completed")
       <ul class="list-disc text-gray-500 ms-6 leading-8">
         <li>File system-based routing</li>
         <li>HTML and JSON responses</li>
@@ -84,29 +84,29 @@
         <li>General purpose cache</li>
         <li>Email delivery</li>
         <li>Background jobs</li>
+        <li>Custom (non-RESTful) routing</li>
+        <li>Database integration</li>
+        <li>HTTP
+          @partial code("keep-alive")
+        </li>
+        <li>Development mode debug page</li>
       </ul>
     </div>
 
     <div>
-      @partial h4("<i class=\"fa-sharp fa-light fa-clock fa-fw be-2\"></i> Pending")
+      @partial h4_icon("clock", "Pending")
       <ul class="list-disc text-gray-500 ms-6 leading-8">
         <li>Environment configurations (development, staging, production, etc.)</li>
-        <li>Development mode debug page</li>
         <li>
           @partial link("Tailwind", "https://tailwindcss.com/", "_blank")
           middleware</li>
-        <li>Custom (non-RESTful) routing</li>
-        <li>HTTP
-          @partial code("keep-alive")
-        </li>
         <li>Websockets</li>
-        <li>Database integration</li>
         <li>Email receipt (via AWS SES, Sendgrid, etc.)</li>
       </ul>
     </div>
   </div>
 
-  @partial h3("Alternatives")
+  @partial h3("Alternatives/Related Projects")
   <a name="alternatives">
   <p class="text-gray-500 mt-2">The below list is a set of alternative or related projects. Please
   @partial link("contact us", "/contact.html")
@@ -130,5 +130,14 @@
     <li>
       @partial link(title: "ZTS", href: "https://github.com/zigster64/zts", target: "_blank")
       : <i>Zig Templates made Simple</i></li>
+    <li>
+      @partial link(title: "Zine", href: "https://github.com/kristoff-it/zine", target: "_blank")
+      : <i>Fast, Scalable, Flexible Static Site Generator (SSG)</i></li>
+    <li>
+      @partial link(title: "Zinc", href: "https://github.com/zon-dev/zinc/", target: "_blank")
+      : <i>Zinc is a framework written in pure Zig with a focus on high performance, usability, security, and extensibility.</i></li>
+    <li>
+      @partial link(title: "zUI", href: "https://github.com/thienpow/zui", target: "_blank")
+      : <i>The comprehensive UI toolkit for Jetzig applications</i></li>
   </ul>
 </div>

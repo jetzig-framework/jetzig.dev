@@ -4,6 +4,16 @@ _Jetzig_ provides configuration options from command line arguments and environm
 
 All runtime options are available by passing `--help` to your compiled _Jetzig_ application, or by using `zig build run -- --help`. (_Zig_'s build system passes all arguments after `--` to the compiled application).
 
+## Environment Mode
+
+The environment mode for an application is defined by the `-Denvironment` build option:
+```console
+$ zig build -Denvironment=production
+```
+Available options are: `development`, `testing`, `production`.
+
+The selected option is available as `jetzig.environment` which is comptime-known and can be used to select configuration options in `src/main.zig`. This option also controls which database configuration is selected from `config/database.zig`.
+
 ## Options
 
 The following sections refer to command-line options that can be passed to your application at launch. For example, the `--log` option can be passed in either of the following two forms:
@@ -34,13 +44,6 @@ Bind the server to the given _IP_ address, e.g. `127.0.0.1` (default), `0.0.0.0`
 ### `-p`, `--port`
 
 Bind the server to the given port (default: `8080`).
-
-### `-e`, `--environment`
-
-Must be `production` or `development` (default: `development`).
-
-* In `development` mode, the _Jetzig_ session encryption secret is generated automatically of not present. In `production`, the `JETZIG_SECRET` environment variable **must** be set.
-* In `development` mode, email delivery is bypassed and email content is sent to the server's logger (this can be overridden - see _Email_ documentation). In `production` emails are always delivered to your configured _SMTP_ server.
 
 ### `--log`
 

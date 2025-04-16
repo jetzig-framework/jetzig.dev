@@ -12,9 +12,7 @@ In a view function both sets of headers are available as:
 The below example translates an incoming request header `example-header` and outputs its value in the response headers as `x-example-header`:
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    _ = data;
-
+pub fn index(request: *jetzig.Request) !jetzig.View {
     if (request.headers.getFirstValue("example-header")) |value| {
         try request.response.headers.append("x-example-header", value);
     }
@@ -81,10 +79,10 @@ const Header = struct {
 ```
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var object = try data.object();
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
     var it = request.headers.iterator();
-    while (it.next()) |header| try data.put(header.name, data.string(header.value));
+    while (it.next()) |header| try root.put(header.name, header.value);
     return request.render(.ok);
 }
 ```

@@ -7,9 +7,9 @@ Use `jetzig generate view` and `jetzig generate mailer` to generate the majority
 ## View
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    try root.put("message", data.string("Welcome to Jetzig!"));
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    try root.put("message", "Welcome to Jetzig!");
 
     const params = try request.params();
 
@@ -53,7 +53,7 @@ pub fn deliver(
         mail.subject = "DEBUG EMAIL";
     }
 
-    try params.put("token", data.string("secret-token"));
+    try params.put("token", "secret-token");
     try env.logger.INFO("Delivering email with subject: '{?s}'", .{mail.get(.subject)});
 }
 ```
@@ -64,7 +64,7 @@ Following the `welcome` naming convention, this template should be named `src/ap
 
 Note that both `.message` (assigned in the _View_ function) and `.token` (assigned in the `deliver` function) are available:
 
-```html
+```zmpl
 <div>Hello! Here is an important message: {\{.message}}</div>
 
 <div>Your secret token is: {\{.token}}</div>
@@ -76,7 +76,7 @@ To ensure that your email is readable by all email clients, the _Text_ part of t
 
 The _Text_ template should be named `src/app/mailers/welcome/text.zmpl`.
 
-```
+```zmpl
 Hello! Here is an important message: {\{.message}}
 
 Your secret token is: {\{.token}}

@@ -8,4 +8,7 @@ jetzig_downloads.json
 bundle.tar.gz
 node_modules/
 public/styles.css
-.zig-cache/
+.zig-cache
+log/
+.env
+.env.*

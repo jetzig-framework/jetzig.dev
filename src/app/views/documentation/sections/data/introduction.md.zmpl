@@ -4,7 +4,7 @@ _Jetzig_ provides a flexible `Data` type that is used throughout the framework. 
 
 ## Creating values
 
-Every view function receives a `*jetzig.Data` argument. This type provides functions for creating various generic data types:
+The following types are supported natively:
 
 * `object`
 * `array`
@@ -12,30 +12,32 @@ Every view function receives a `*jetzig.Data` argument. This type provides funct
 * `integer`
 * `float`
 * `boolean`
+* `datetime`
 
-The return value of each of the above functions is always `*jetzig.Data.Value`, allowing you to compose complex objects and arrays at runtime without the need to pre-define response data structures.
+Other types are automatically coerced to one of the above types, including nested structs and arrays.
 
-The example below demonstrates each of the available type creation functions:
+The example below demonstrates _Jetzig_'s type inference and value nesting:
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
-    try root.put("name", data.string("Bob"));
-    try root.put("balloons", data.integer(99));
-    try root.put("pi", data.float(3.1415));
-    try root.put("enabled", data.boolean(true));
+    try root.put("name", "Bob");
+    try root.put("balloons", 99);
+    try root.put("pi", 3.1415);
+    try root.put("enabled", true);
     try root.put("empty", null);
 
-    var nested = try data.object();
-    try nested.put("example", data.string("a nested value");
+    var nested = try root.put("nested", .object);
+    try nested.put("example", "a nested value");
 
-    try root.put("nested", nested);
+    var array = root.put("array", .array);
+    try array.append("a string in an array");
 
-    var array = try data.array();
-    try array.append(data.string("a string in an array"));
+    const Custom = struct { foo: []const u8, bar: usize, baz: bool };
+    const custom = Custom{ .foo = "foo", .bar = 123, .baz = false };
 
-    try root.put("array", array);
+    try root.put("custom", custom);
 
     return request.render(.ok);
 }
@@ -53,7 +55,7 @@ pub fn get(self: *Data, key: []const u8) ?*Value
 
 If the _Root Value_ is `object`, retrieves the `*Value` for the given key, if present. Otherwise, returns `null`.
 
-```zig
+```zmpl
 \@zig {
     if (zmpl.get("foobar")) |foobar| {
         {\{foobar}}
@@ -62,7 +64,7 @@ If the _Root Value_ is `object`, retrieves the `*Value` for the given key, if pr
 ```
 
 In most cases, the _Reference_ syntax provides a more convenient way of rendering values:
-```zig
+```zmpl
 {\{.foobar}}
 ```
 
@@ -78,7 +80,7 @@ Pass an array of `[]const u8` to recursively fetch values from a nested `Value`.
 
 Returns `null` if `Value` is not `object` or if any of the provided keys are not found.
 
-```zig
+```zmpl
 \@zig {
     if (zmpl.chain(&[_][]const u8{ "user", "profile", "height" })) |height| {
           <div>User is {\{height}}cm tall.</div>
@@ -110,7 +112,7 @@ const Item = struct {
 
 Use `zmpl.items(.array)` or `zmpl.items(.object)` in a _Zmpl_ template to iterate over the _Root Value_ with a `for` loop:
 
-```zig
+```zmpl
 \@zig {
   <ul>
   for (zmpl.items(.array)) |value| {
@@ -120,7 +122,7 @@ Use `zmpl.items(.array)` or `zmpl.items(.object)` in a _Zmpl_ template to iterat
 }
 ```
 
-```zig
+```zmpl
 \@zig {
   <ul>
   for (zmpl.items(.object)) |item| {

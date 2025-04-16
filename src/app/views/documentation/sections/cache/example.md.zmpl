@@ -7,15 +7,15 @@ The example below provides a `post` _View_ function that stores a `message` para
 ### View
 
 ```zig
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
     try root.put("message", try request.cache.get("message"));
 
     return request.render(.ok);
 }
 
-pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
+pub fn post(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
 
     const params = try request.params();
 
@@ -23,7 +23,7 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
         try request.cache.put("message", message);
         try root.put("message", message);
     } else {
-        try root.put("message", data.string("[no message param detected]"));
+        try root.put("message", "[no message param detected]");
     }
 
     return request.render(.ok);
@@ -32,7 +32,7 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
 ### `index.zmpl`
 
-```html
+```zmpl
 <div>
   <span>Cached value: {\{.message}}</span>
 </div>
@@ -40,7 +40,7 @@ pub fn post(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
 ### `post.zmpl`
 
-```html
+```zmpl
 <div>
   <span>Value "{\{.message}}" added to cache</span>
 </div>

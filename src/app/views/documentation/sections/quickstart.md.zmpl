@@ -28,7 +28,7 @@ $ jetzig server
 
 Use the command line tool again to generate a view for the `/iguanas` endpoint with an index function:
 
-```zig
+```console
 $ jetzig generate view iguanas index
 ```
 
@@ -52,18 +52,18 @@ The default response format is `html`, but this can be overridden by specifying 
 
 ## Create some data
 
-A core concept to _Jetzig_ is its handling of response data. All view functions receive a `data` argument. This argument provides a set of functions for creating data that can be used in templates and exposed as _JSON_. In _Jetzig_, template data and _JSON_ data are one and the same. Simply add data to your response and it is automatically available in templates and _JSON_ endpoints.
+A core concept to _Jetzig_ is its handling of response data. In _Jetzig_, template data and _JSON_ data are one and the same. Simply add data to your response and it is automatically available in templates and _JSON_ endpoints.
 
-Set the root object of the response data using `data.root(.object)` or `data.root(.array)`. Add values to the root object and use them in your templates or view them as _JSON_. All values you wish to publish must be added to the root object before rendering. Here's an example:
+Set the root object of the response data using `request.data(.object)` or `request.data(.array)`. Add values to the root object and use them in your templates or view them as _JSON_. All values you wish to publish must be added to the root object before rendering. Here's an example:
 
 ```zig
 // src/app/views/iguanas.zig
 const jetzig = @import("jetzig");
 
-pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
-    var root = try data.root(.object);
-    try root.put("message", data.string("Welcome to Jetzig!"));
-    try root.put("iguana_count", data.integer(100_000));
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    var root = try request.data(.object);
+    try root.put("message", "Welcome to Jetzig!");
+    try root.put("iguana_count", 100_000);
 
     return request.render(.ok);
 }
@@ -71,8 +71,8 @@ pub fn index(request: *jetzig.Request, data: *jetzig.Data) !jetzig.View {
 
 You can now use _Zmpl_'s data lookup syntax to access these values in your template:
 
-```html
-// src/app/views/iguanas/index.zmpl
+```zmpl
+\@// src/app/views/iguanas/index.zmpl
 <div>Message: {\{.message}}</div>
 <div>{\{.iguana_count}} iguanas!</div>
 ```
