@@ -93,6 +93,7 @@ pub const Options = struct {
     unique: bool = false, // Apply a unique constraint when `true`
     reference: ?Reference = null, // Create a foreign key, e.g. `.{"blogs", "id"}`
     length: ?u16 = null, // Specify column length (string columns default to `255`)
+    default: ?[]const u8 = null, // Specify a default value for the column, e.g. `"42"`, `"now()"`, or `"true"`
 };
 ```
 
