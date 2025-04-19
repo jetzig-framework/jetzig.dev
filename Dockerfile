@@ -7,13 +7,12 @@ RUN tar -xf /zig.tar.xz
 RUN mkdir /app
 COPY . /app/
 WORKDIR /app/
-RUN /zig/zig-*/zig build -Doptimize=ReleaseFast install
+RUN /zig/zig-*/zig build install
 
 FROM alpine:latest
 RUN mkdir -p /app/public
 COPY --from=build /app/zig-out/bin/jetzig.dev /app/server
 COPY public/* /app/public/
-COPY .env.production /app/.env
 WORKDIR /app/
 ENTRYPOINT ["./server"]
 EXPOSE 8080
