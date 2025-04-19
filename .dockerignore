@@ -5,4 +5,4 @@
 Dockerfile
 fly.toml
 .zig-cache/
-.zig-out/
+zig-out/

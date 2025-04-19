@@ -1,5 +1,4 @@
 .{
-
     .name = .jetzig_website,
     .fingerprint = 0xe4b955e020013ca4,
     // This is a [Semantic Version](https://semver.org/).
@@ -18,8 +17,8 @@
     // internet connectivity.
     .dependencies = .{
         .jetzig = .{
-            .url = "https://github.com/jetzig-framework/jetzig/archive/b32d24ad801220425f4dc1d34a6fb158da34201b.tar.gz",
-            .hash = "jetzig-0.0.0-IpAgLX0oDwC7ssEAHF76QNrxq3BCOBq9VZvMp3PxiYjr",
+            .url = "https://github.com/jetzig-framework/jetzig/archive/6d9fa8bff4bb72402b8675dda751157a8596a7f3.tar.gz",
+            .hash = "jetzig-0.0.0-IpAgLUYsDwBBrw2zzCXxIRPouOZq_7Fc4Lri8R07tTXk",
         },
     },
     .paths = .{
