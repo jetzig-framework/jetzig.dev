@@ -16,5 +16,5 @@ COPY public/* /app/public/
 COPY .env.production /app/.env
 WORKDIR /app/
 ENTRYPOINT ["./server"]
-EXPOSE 3000
+EXPOSE 8080
 CMD ["--bind", "0.0.0.0", "--port", "8080"]
