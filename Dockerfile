@@ -7,7 +7,7 @@ RUN tar -xf /zig.tar.xz
 RUN mkdir /app
 COPY . /app/
 WORKDIR /app/
-RUN /zig/zig-*/zig build install
+RUN /zig/zig-*/zig build -Doptimize=ReleaseFast -Denvironment=production install
 
 FROM alpine:latest
 RUN mkdir -p /app/public
