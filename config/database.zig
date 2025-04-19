@@ -23,6 +23,6 @@ pub const database = .{
         .database = "jetzig_website",
         .hostname = "localhost",
         .port = 5432,
-        .pool_size = 64,
+        .pool_size = 32,
     },
 };
