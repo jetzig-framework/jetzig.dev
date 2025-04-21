@@ -2,7 +2,7 @@ const std = @import("std");
 const jetzig = @import("jetzig");
 
 pub const defaults: jetzig.mail.DefaultMailParams = .{
-    .from = .{ .email = "hello@jetzig.dev" },
+    .from = .{ .name = "Jetzig Contact Form", .email = "hello@jetzig.dev" },
     .subject = "Message from Jetzig website",
     .to = &.{.{ .email = "hello@jetzig.dev" }},
 };
