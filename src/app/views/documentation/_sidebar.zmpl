@@ -31,6 +31,9 @@
                   @partial documentation_link("Headers", "requests/headers")
                 </li>
                 <li>
+                  @partial documentation_link("Cookies", "requests/cookies")
+                </li>
+                <li>
                   @partial documentation_link("Rendering", "requests/rendering")
                 </li>
                 <li>
