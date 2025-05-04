@@ -19,7 +19,7 @@ pub fn index(request: *jetzig.Request) !jetzig.View {
 const Download = struct { title: []const u8, path: []const u8 };
 
 fn downloadsData(allocator: std.mem.Allocator, vars: jetzig.Environment.Vars) ![]const Download {
-    const path = vars.get("DOWNLOADS_PATH") orelse "/var/www/jetzig_downloads.json";
+    const path = vars.get("DOWNLOADS_PATH") orelse "/app/public/downloads/jetzig_downloads.json";
     const file = std.fs.openFileAbsolute(path, .{}) catch |err| {
         switch (err) {
             error.FileNotFound => return &.{},

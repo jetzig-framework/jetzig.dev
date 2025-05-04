@@ -15,6 +15,8 @@ pub const jetzig_options = struct {
 
     pub const job_worker_threads: usize = 4;
 
+    pub const max_bytes_public_content: usize = std.math.pow(usize, 2, 22);
+
     pub const smtp: jetzig.mail.SMTPConfig = .{
         .port = 1025,
         .encryption = .none, // .insecure, .none, .tls, .start_tls

@@ -17,6 +17,11 @@ primary_region = 'ams'
   min_machines_running = 1
   processes = ['app']
 
+[mounts]
+  source = "downloads"
+  destination = "/app/public/downloads/"
+  snapshot_retention = 1
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'

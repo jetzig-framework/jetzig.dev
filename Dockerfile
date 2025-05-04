@@ -13,7 +13,11 @@ FROM alpine:latest
 RUN mkdir -p /app/public
 COPY --from=build /app/zig-out/bin/jetzig.dev /app/server
 COPY public/* /app/public/
+COPY docker/entrypoint.sh /entrypoint.sh
+COPY docker/crontab.cron /etc/cron.d/jetzig.cron
+COPY docker/get_releases.py /usr/local/lib/get_releases.py
+RUN apk add python3 py3-requests
 WORKDIR /app/
-ENTRYPOINT ["./server"]
 EXPOSE 8080
-CMD ["--bind", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/app/server", "--bind", "0.0.0.0", "--port", "8080"]

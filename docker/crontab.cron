@@ -1,0 +1,1 @@
+0 * * * * ( . /usr/local/share/jetzig.env ; python3 /usr/local/lib/get_releases.py )
