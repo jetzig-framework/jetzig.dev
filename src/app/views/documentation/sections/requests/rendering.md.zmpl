@@ -32,6 +32,17 @@ It _Jetzig_, template data and _JSON_ data are interchangeable. Any values creat
 
 See the _Data_ documentation for more details.
 
+## Text
+
+Render text directly using `request.renderText`. Use this option when you have some raw text that can be rendered directly, bypassing the template/JSON layers.
+
+```zig
+pub fn index(request: *jetzig.Request) !jetzig.View {
+    request.response.content_type = "text/xml";
+    return request.renderText("<foo><bar>baz</bar></foo>", .ok);
+}
+```
+
 ## Example
 
 The below example, taken from the `downloads.zig` view of this website shows a complete view function. It is automatically capable of responding to _JSON_ and _HTML_ requests.
