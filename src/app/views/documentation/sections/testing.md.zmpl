@@ -42,8 +42,8 @@ test "index" {
 `request` expects the following parameters:
 
 1. The HTTP verb as an enum (`.GET`, `.POST`, `.PATCH`, etc.)
-2. The target request path.
-3. Request options.
+1. The target request path.
+1. Request options.
 
 #### Request Options
 
