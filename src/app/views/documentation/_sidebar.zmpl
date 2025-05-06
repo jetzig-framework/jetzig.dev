@@ -248,6 +248,9 @@
                   @partial documentation_link("Migrations", "database/migrations")
                 </li>
                 <li>
+                  @partial documentation_link("Seeders", "database/seeders")
+                </li>
+                <li>
                   @partial documentation_link("Command Line Tools", "database/command_line_tools")
                 </li>
                 <li>

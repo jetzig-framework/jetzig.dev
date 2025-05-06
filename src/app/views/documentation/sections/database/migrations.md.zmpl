@@ -4,7 +4,7 @@ _JetQuery_ provides a framework for managing database migrations.
 
 The table `jetquery_migrations` is used to track pending/applied migrations. This table is automatically created the first time you run a migration.
 
-The details below cover how migrations work and the structure of a migration file. It is recommended to use the [Command Line Tools](/documentation/database/command_line_tools) to create and run migrations.
+The details below cover how migrations work and the structure of a migration file. It is recommended to use the [Command Line Tools](/documentation/sections/database/command_line_tools) to create and run migrations.
 
 ## Migration Format
 

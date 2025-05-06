@@ -57,6 +57,10 @@ Drop the database. When using this command in the `production` environment the e
 
 Run all pending migrations and update the `jetquery_migrations` table.
 
+## `jetzig database seed`
+
+Run all pending seeders to set up your application with some initial data.
+
 ## `jetzig database rollback`
 
 Roll back the last migration and update the `jetquery_migrations` table.
@@ -128,3 +132,38 @@ $ jetzig g migration table:alter:cats column:color:string:index:unique \
 ```
 
 Note that (as in the last example) it is possible to generate migrations that may not be compatible with your database. For example, in _PostgreSQL_ it is forbidden to rename multiple columns in a single _DDL_ command. _JetQuery_ does not attempt to prevent this kind of migration from being created or applied and instead allows the database to reject invalid migrations.
+
+## `jetzig generate seeder`
+
+Generate a new seeder file in `src/app/database/seeders/` timestamped to the current time and date.
+
+This command requires at least one argument (the name of the seeder):
+
+```zig
+# src/app/database/seeders/2024-11-10_20-42-30_my_table.zig
+
+const std = @import("std");
+
+pub fn run(repo: anytype) !void {
+    try repo.insert(
+        .User,
+        .{
+            .email = "iguana@jetzig.dev",
+            .password_hash = "not_secure",
+        },
+    );
+
+    try repo.insert(
+        .User,
+        .{
+            .email = "admin@jetzig.dev",
+            .password_hash = "do_not_use",
+        },
+    );
+}
+```
+
+Modify this file to suit your requirements before applying the migrations with `jetzig database seed`.
+
+See the [Seeders](/documentation/sections/database/seeders) documentation for more details.
+
