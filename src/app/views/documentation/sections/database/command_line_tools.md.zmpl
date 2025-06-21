@@ -121,11 +121,11 @@ The `jetzig generate migration` command also accepts a number of options for qui
 The below examples taken from _JetQuery_'s test's give a general idea of the available options:
 
 ```console
-$ jetzig g migration table:create:cats column:name:string:index:unique column:paws:integer column:human_id:index:reference:humans.id
+$ jetzig g migration create_cats table:create:cats column:name:string:index:unique column:paws:integer column:human_id:index:reference:humans.id
 
-$ jetzig g migration drop:cats
+$ jetzig g migration drop_cats table:drop:cats
 
-$ jetzig g migration table:alter:cats column:color:string:index:unique \
+$ jetzig g migration alter_cats table:alter:cats column:color:string:index:unique \
                                       column:rename:paws:feet \
                                       column:drop:name \
                                       rename:dogs
